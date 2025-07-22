@@ -285,6 +285,7 @@
             <div id="waitlist" class="max-w-md mx-auto">
                 <!-- Visible Form for User Interaction -->
                 <form id="waitlist-form" class="flex flex-col sm:flex-row gap-3">
+                    <input type="hidden" name="form-name" value="waitlist">
                     <input type="email" name="email" id="email-input" required placeholder="your-email@domain.com" class="flex-grow w-full px-5 py-3.5 rounded-lg bg-zinc-900 border border-zinc-700 text-slate-200 focus:ring-4 focus:ring-orange-500/50 focus:border-orange-500 outline-none transition-all duration-300" />
                     <button type="submit" class="bg-[var(--accent-color)] text-black font-bold px-6 py-3.5 rounded-lg hover:bg-white transition-colors duration-300 accent-glow-button">Request Access</button>
                 </form>
@@ -523,6 +524,9 @@
             const myForm = event.target;
             const formData = new FormData(myForm);
             
+            // Add the form-name to the FormData object
+            formData.append('form-name', 'waitlist');
+
             fetch("/", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
