@@ -240,6 +240,12 @@
     
     <!-- Background Music -->
     <audio id="background-music" src="music.mp3" loop></audio>
+    
+    <!-- Hidden Netlify Form for detection -->
+    <form name="waitlist" netlify netlify-honeypot="bot-field" hidden>
+      <input type="email" name="email" />
+    </form>
+
 
     <div class="page-content">
         <!-- Header -->
@@ -277,8 +283,8 @@
             <p class="max-w-2xl mx-auto text-lg md:text-xl text-slate-400 mt-8 mb-10">Operator Uplift is a command-line interface for your life's goals. We use AI to parse your grandest ambitions into mission-critical, actionable steps.</p>
 
             <div id="waitlist" class="max-w-md mx-auto">
-                <!-- Netlify Form Integration -->
-                <form name="waitlist" method="POST" data-netlify="true" id="waitlist-form" class="flex flex-col sm:flex-row gap-3">
+                <!-- Visible Form for User Interaction -->
+                <form id="waitlist-form" class="flex flex-col sm:flex-row gap-3">
                     <input type="email" name="email" id="email-input" required placeholder="your-email@domain.com" class="flex-grow w-full px-5 py-3.5 rounded-lg bg-zinc-900 border border-zinc-700 text-slate-200 focus:ring-4 focus:ring-orange-500/50 focus:border-orange-500 outline-none transition-all duration-300" />
                     <button type="submit" class="bg-[var(--accent-color)] text-black font-bold px-6 py-3.5 rounded-lg hover:bg-white transition-colors duration-300 accent-glow-button">Request Access</button>
                 </form>
@@ -499,11 +505,11 @@
         // --- Fade-in Animation on Scroll ---
         const faders = document.querySelectorAll('.fade-in');
         const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
-        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+        const appearOnScroll = new IntersectionObserver(function(entries, observer) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    appearOnScroll.unobserve(entry.target);
+                    observer.unobserve(entry.target);
                 }
             });
         }, appearOptions);
@@ -520,7 +526,7 @@
             fetch("/", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: new URLSearchParams(formData).toString()
+                body: new URLSearchParams(new FormData(document.querySelector('form[name="waitlist"]'))).toString()
             }).then(() => {
                 showPage('success-modal');
                 form.reset();
@@ -580,7 +586,10 @@
 
         soundToggle.addEventListener('click', () => {
             if (!musicStarted) {
-                music.play().catch(e => console.log("Audio play failed, user must interact first."));
+                const playPromise = music.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(e => console.log("Audio play was prevented. User must interact with the page first."));
+                }
                 musicStarted = true;
             }
             
@@ -594,11 +603,11 @@
         const cookieBanner = document.getElementById('cookie-consent-banner');
         const acceptBtn = document.getElementById('cookie-accept');
         const declineBtn = document.getElementById('cookie-decline');
-        if (!localStorage.getItem('cookie_consent_uplift_v14')) {
+        if (!localStorage.getItem('cookie_consent_uplift_v15')) {
             cookieBanner.classList.remove('hidden');
         }
         function handleConsent() {
-            localStorage.setItem('cookie_consent_uplift_v14', 'true');
+            localStorage.setItem('cookie_consent_uplift_v15', 'true');
             cookieBanner.classList.add('hidden');
         }
         acceptBtn.addEventListener('click', handleConsent);
