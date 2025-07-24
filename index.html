@@ -43,7 +43,6 @@
             transition: transform 0.1s ease-out;
             z-index: 9999;
         }
-        /* FIX: Hide custom cursor on touch devices where it's not needed */
         @media (hover: none) and (pointer: coarse) {
             .custom-cursor {
                 display: none;
@@ -172,7 +171,7 @@
             margin-top: 2rem;
             margin-bottom: 1rem;
         }
-        .legal-content p, .legal-content ul {
+        .legal-content p, .legal-content ul, .faq-answer {
             color: var(--text-muted-color);
             margin-bottom: 1rem;
             line-height: 1.7;
@@ -207,6 +206,68 @@
             transform: scale(0.8);
             animation: fadeInScale 1s ease-out forwards, pulse 2s infinite ease-in-out 1s;
         }
+        
+        /* ADDITION: Accessibility & UI styles */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--accent-color);
+            color: black;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+        .spinner {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 22px;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #3f3f46;
+            transition: .4s;
+            border-radius: 22px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: var(--accent-color);
+        }
+        input:checked + .slider:before {
+            transform: translateX(18px);
+        }
+
 
         /* Animations */
         @keyframes fadeInScale {
@@ -227,6 +288,9 @@
     </style>
 </head>
 <body class="antialiased">
+    
+    <!-- ADDITION: Accessibility skip link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- Loading Screen -->
     <div id="loading-screen">
@@ -242,7 +306,7 @@
     <!-- Background Music -->
     <audio id="background-music" src="music.mp3" loop></audio>
 
-    <div class="page-content">
+    <div id="main-content" class="page-content">
         <!-- Header -->
         <header class="container mx-auto px-6 py-8 md:py-10 flex justify-between items-center mb-12 md:mb-16">
             <a href="#" class="flex items-center gap-3">
@@ -260,8 +324,8 @@
 
         <!-- Hero Section -->
         <main class="container mx-auto px-6 text-center fade-in">
-            <h2 class="text-4xl md:text-6xl font-bold text-slate-50 leading-tight mb-4">Deconstruct Your Ambition.</h2>
-            <h2 class="text-4xl md:text-6xl font-bold leading-tight mb-6 accent-glow-text">Engineer Your Ascent.</h2>
+            <!-- FIX: Removed duplicate H1 headline -->
+            <h2 class="text-4xl md:text-6xl font-bold leading-tight mb-8">Deconstruct Your Ambition. <span class="accent-glow-text">Engineer Your Ascent.</span></h2>
             
             <div class="scene">
                 <div class="cube" id="cube">
@@ -275,7 +339,7 @@
                 </div>
             </div>
 
-            <p class="max-w-2xl mx-auto text-lg md:text-xl text-slate-400 mt-8 mb-10">Operator Uplift is a command-line interface for your life's goals. We use AI to parse your grandest ambitions into mission-critical, actionable steps.</p>
+            <p class="max-w-2xl mx-auto text-lg md:text-xl text-slate-400 mt-8 mb-10">Operator Uplift uses AI to build the execution plan for your most ambitious goals.</p>
 
             <div id="waitlist" class="max-w-md mx-auto">
                 <form id="waitlist-form" name="waitlist" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="flex flex-col sm:flex-row gap-3">
@@ -284,7 +348,13 @@
                         <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
                     </p>
                     <input type="email" name="email" id="email-input" required placeholder="your-email@domain.com" class="flex-grow w-full px-5 py-3.5 rounded-lg bg-zinc-900 border border-zinc-700 text-slate-200 focus:ring-4 focus:ring-orange-500/50 focus:border-orange-500 outline-none transition-all duration-300" />
-                    <button type="submit" class="bg-[var(--accent-color)] text-black font-bold px-6 py-3.5 rounded-lg hover:bg-white transition-colors duration-300 accent-glow-button">Request Access</button>
+                    <button type="submit" id="waitlist-submit-btn" class="bg-[var(--accent-color)] text-black font-bold px-6 py-3.5 rounded-lg hover:bg-white transition-colors duration-300 accent-glow-button flex items-center justify-center">
+                        <span class="button-text">Request Access</span>
+                        <svg class="spinner h-5 w-5 ml-3 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </button>
                 </form>
                 <div id="error-message" class="hidden mt-4 text-red-400 font-medium"></div>
             </div>
@@ -303,16 +373,68 @@
             </div>
         </section>
 
+        <!-- ADDITION: FAQ Section -->
+        <section class="container mx-auto px-6 mt-28 md:mt-40 fade-in">
+            <div class="text-center mb-16">
+                <h3 class="text-3xl md:text-4xl font-bold text-slate-50">Frequently Asked Questions</h3>
+            </div>
+            <div class="max-w-3xl mx-auto space-y-6">
+                <details class="glass-card p-6 rounded-lg group">
+                    <summary class="font-semibold text-lg text-slate-200 cursor-pointer list-none flex justify-between items-center">
+                        What problem does Operator Uplift solve?
+                        <svg class="w-5 h-5 group-open:rotate-180 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+                    </summary>
+                    <div class="faq-answer mt-4">
+                        <p>Many ambitious individuals struggle to translate high-level goals (like "start a company" or "get in shape") into a concrete, daily plan. Operator Uplift acts as an AI-powered project manager for your life, breaking down massive ambitions into a clear sequence of actionable tasks, helping you overcome inertia and make consistent progress.</p>
+                    </div>
+                </details>
+                <details class="glass-card p-6 rounded-lg group">
+                    <summary class="font-semibold text-lg text-slate-200 cursor-pointer list-none flex justify-between items-center">
+                        Who is this for?
+                        <svg class="w-5 h-5 group-open:rotate-180 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+                    </summary>
+                    <div class="faq-answer mt-4">
+                        <p>It's for entrepreneurs, creatives, students, athletes, and anyone who wants to apply a systematic, mission-oriented approach to their personal and professional goals. If you have a big objective but aren't sure where to start, Operator Uplift is designed for you.</p>
+                    </div>
+                </details>
+                <details class="glass-card p-6 rounded-lg group">
+                    <summary class="font-semibold text-lg text-slate-200 cursor-pointer list-none flex justify-between items-center">
+                        When do you expect to launch?
+                        <svg class="w-5 h-5 group-open:rotate-180 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+                    </summary>
+                    <div class="faq-answer mt-4">
+                        <p>We are working hard to build a robust and effective tool. Join the waitlist to be the first to know about our launch timeline, beta access opportunities, and other important updates.</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
         <!-- Footer -->
         <footer class="container mx-auto px-6 text-center mt-28 md:mt-40 pt-10 border-t border-zinc-800 fade-in">
             <div class="flex flex-col sm:flex-row justify-between items-center gap-6">
-                <!-- FIX: Updated copyright to remove "Inc." -->
                 <p class="text-slate-500">&copy; 2025 Operator Uplift. All rights reserved.</p>
-                <div class="flex gap-6">
+                <div class="flex flex-wrap justify-center gap-x-6 gap-y-4">
                     <a href="#terms" class="legal-link text-slate-500 hover:text-[var(--accent-color)] transition-colors">Terms</a>
                     <a href="#privacy" class="legal-link text-slate-500 hover:text-[var(--accent-color)] transition-colors">Privacy</a>
                     <a href="#cookies" class="legal-link text-slate-500 hover:text-[var(--accent-color)] transition-colors">Cookies</a>
                     <a href="#" id="manage-cookies" class="text-slate-500 hover:text-[var(--accent-color)] transition-colors">Manage Cookies</a>
+                </div>
+            </div>
+             <!-- ADDITION: Animation Controls -->
+            <div class="mt-8 pt-6 border-t border-zinc-800/50 flex flex-col sm:flex-row justify-center items-center gap-x-8 gap-y-4 text-sm text-slate-400">
+                <div class="flex items-center gap-3">
+                    <span>Background Particles</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="toggle-particles" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span>Cube Rotation</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="toggle-cube-rotation" checked>
+                        <span class="slider"></span>
+                    </label>
                 </div>
             </div>
         </footer>
@@ -322,45 +444,34 @@
     <div id="terms" class="overlay-page legal-page">
         <div class="legal-content container mx-auto max-w-4xl relative">
             <button class="close-overlay-btn fixed top-8 right-8 text-white text-4xl">&times;</button>
-            <!-- FIX: Updated Terms of Service Content -->
             <h2>Terms of Service</h2>
             <p>Last updated: July 23, 2025</p>
             <p>Welcome to Operator Uplift. These Terms of Service ("Terms") govern your access to and use of the Operator Uplift website and any services offered (collectively, the "Service"). By accessing or using the Service, you agree to be bound by these Terms.</p>
-            
             <h3>1. The Service</h3>
             <p>Operator Uplift is a pre-launch project. The Service is provided on an "as is" and "as available" basis. We provide information about our upcoming product and collect email addresses for a waitlist. We do not make any warranties about the completeness, reliability, or accuracy of this information. The features and functionality of the final product are subject to change.</p>
-
             <h3>2. Waitlist</h3>
             <p>By submitting your email address to our waitlist, you consent to receive email communications from us regarding updates, news, and marketing for Operator Uplift. You can opt-out of these communications at any time by following the unsubscribe link in the emails.</p>
-
             <h3>3. User Conduct</h3>
             <p>You agree not to use the Service for any unlawful purpose or to engage in any activity that would disrupt the Service or its servers and networks.</p>
-
             <h3>4. Intellectual Property</h3>
             <p>The Service and all of its original content, including text, graphics, logos, and software, are the property of the creators of Operator Uplift and are protected by copyright and other intellectual property laws. You may not use our trademarks or content without our prior written consent.</p>
-
             <h3>5. Limitation of Liability</h3>
             <p>To the fullest extent permitted by applicable law, Operator Uplift shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Service.</p>
-
             <h3>6. Changes to Terms</h3>
             <p>We reserve the right to modify these Terms at any time. We will notify you of any changes by posting the new Terms on this page. Your continued use of the Service after any such changes constitutes your acceptance of the new Terms.</p>
-
             <h3>7. Contact Us</h3>
-            <p>If you have any questions about these Terms, please contact us at [Your Contact Email Address, e.g., contact@operatoruplift.com].</p>
+            <p>If you have any questions about these Terms, please contact us at <a href="mailto:contact@operatoruplift.com">contact@operatoruplift.com</a>.</p>
         </div>
     </div>
 
     <div id="privacy" class="overlay-page legal-page">
         <div class="legal-content container mx-auto max-w-4xl relative">
             <button class="close-overlay-btn fixed top-8 right-8 text-white text-4xl">&times;</button>
-            <!-- FIX: Updated Privacy Policy Content -->
             <h2>Privacy Policy</h2>
             <p>Last updated: July 23, 2025</p>
             <p>This Privacy Policy describes how Operator Uplift ("we," "us," or "our") collects, uses, and discloses your information when you use our website (the "Service").</p>
-            
             <h3>1. Information We Collect</h3>
             <p>We collect information you provide directly to us. The only personal information we currently collect is your email address when you voluntarily sign up for our waitlist.</p>
-
             <h3>2. How We Use Your Information</h3>
             <p>We use the email address you provide to:</p>
             <ul>
@@ -369,16 +480,12 @@
                 <li>Respond to your comments or inquiries if you contact us.</li>
             </ul>
             <p>Your email address is processed through our form provider, Netlify, which has its own privacy policy and security measures.</p>
-
             <h3>3. Data Sharing and Disclosure</h3>
             <p>We do not sell, trade, or rent your personal information to others. We may share your information with third-party service providers (like Netlify) only to the extent necessary for them to provide their services to us. We will not share your information for any other purpose without your consent, unless required by law.</p>
-
             <h3>4. Data Security</h3>
             <p>The security of your data is important to us. We rely on the security infrastructure of our service providers to protect your information. However, no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security.</p>
-            
             <h3>5. Your Rights</h3>
             <p>You have the right to opt-out of our email communications at any time by clicking the "unsubscribe" link provided in every email. You may also contact us to request access to, correction of, or deletion of your personal information.</p>
-
             <h3>6. Changes to This Policy</h3>
             <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes.</p>
         </div>
@@ -387,24 +494,19 @@
     <div id="cookies" class="overlay-page legal-page">
         <div class="legal-content container mx-auto max-w-4xl relative">
             <button class="close-overlay-btn fixed top-8 right-8 text-white text-4xl">&times;</button>
-            <!-- FIX: Updated Cookie Policy Content -->
             <h2>Cookie Policy</h2>
             <p>Last updated: July 23, 2025</p>
             <p>This Cookie Policy explains what cookies are and how we use them on the Operator Uplift website.</p>
-            
             <h3>What Are Cookies?</h3>
             <p>Cookies are small text files that are placed on your computer or mobile device when you visit a website. They are widely used to make websites work, or work more efficiently, as well as to provide information to the owners of the site.</p>
-
             <h3>How We Use Cookies</h3>
             <p>We use cookies for a very limited and specific purpose:</p>
             <ul>
                 <li><strong>Essential Cookies:</strong> We use one essential cookie to remember your choice regarding our cookie consent banner. This is a functional cookie that allows us to know whether you have accepted or declined our cookie policy, so we don't have to ask you on every visit.</li>
             </ul>
             <p>At this time, we do not use any cookies for analytics, advertising, or tracking purposes.</p>
-
             <h3>Your Choices Regarding Cookies</h3>
             <p>When you first visit our site, you are presented with a banner allowing you to accept or decline our use of cookies. If you decline, the functional cookie to remember your choice will still be set. Most web browsers allow some control of most cookies through the browser settings. To find out more about cookies, including how to see what cookies have been set, visit <a href="https://www.aboutcookies.org" target="_blank" rel="noopener noreferrer">www.aboutcookies.org</a> or <a href="https://www.allaboutcookies.org" target="_blank" rel="noopener noreferrer">www.allaboutcookies.org</a>.</p>
-            
             <h3>Changes to This Cookie Policy</h3>
             <p>We may update this Cookie Policy in the future if we introduce new cookies or change how we use them. Any changes will be posted on this page.</p>
         </div>
@@ -436,261 +538,270 @@
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
     
     <script>
-        // --- Loading Screen ---
-        window.onload = () => {
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Loading Screen ---
             setTimeout(() => {
                 const loadingScreen = document.getElementById('loading-screen');
-                loadingScreen.style.opacity = '0';
-                setTimeout(() => loadingScreen.style.display = 'none', 500);
-            }, 2000);
-        };
-
-        // --- Custom Cursor ---
-        const cursor = document.querySelector('.custom-cursor');
-        window.addEventListener('mousemove', e => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        // --- tsParticles Initialization ---
-        tsParticles.load("tsparticles", {
-            fpsLimit: 120,
-            background: { color: { value: "#0a0a0a" } },
-            particles: {
-                number: { value: 50, density: { enable: true, value_area: 800 } },
-                color: { value: "#ffffff" },
-                shape: { type: "circle" },
-                opacity: { value: 0.5, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.1, sync: false } },
-                size: { value: 1.5, random: true },
-                move: { enable: true, speed: 0.5, direction: "none", random: true, straight: false, out_mode: "out" }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: { onhover: { enable: true, mode: "grab" }, resize: true },
-                modes: {
-                    grab: { distance: 140, line_linked: { opacity: 1, color: "var(--accent-color)" } },
+                if (loadingScreen) {
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(() => loadingScreen.style.display = 'none', 500);
                 }
-            },
-            detectRetina: true
-        });
+            }, 2000);
 
-        // --- Interactive 3D Cube Logic (Mobile & Touch Friendly) ---
-        const cube = document.getElementById('cube');
-        const scene = document.querySelector('.scene');
-        let isDragging = false;
-        let previousX = 0;
-        let previousY = 0;
-        let rotationX = 0;
-        let rotationY = 0;
-        let velocityX = 0;
-        let velocityY = 0;
-        const friction = 0.98;
-        const autoRotateSpeed = 0.1;
+            // --- Custom Cursor ---
+            const cursor = document.querySelector('.custom-cursor');
+            if (cursor) {
+                window.addEventListener('mousemove', e => {
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
+                });
+            }
 
-        const startDrag = (x, y) => {
-            isDragging = true;
-            previousX = x;
-            previousY = y;
-            velocityX = 0;
-            velocityY = 0;
-        };
+            // --- tsParticles Initialization ---
+            let particlesInstance;
+            tsParticles.load("tsparticles", {
+                fpsLimit: 120,
+                background: { color: { value: "#0a0a0a" } },
+                particles: {
+                    number: { value: 50, density: { enable: true, value_area: 800 } },
+                    color: { value: "#ffffff" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.5, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.1, sync: false } },
+                    size: { value: 1.5, random: true },
+                    move: { enable: true, speed: 0.5, direction: "none", random: true, straight: false, out_mode: "out" }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: { onhover: { enable: true, mode: "grab" }, resize: true },
+                    modes: {
+                        grab: { distance: 140, line_linked: { opacity: 1, color: "var(--accent-color)" } },
+                    }
+                },
+                detectRetina: true
+            }).then(container => {
+                particlesInstance = container;
+            });
 
-        const drag = (x, y) => {
-            if (isDragging) {
-                const deltaX = x - previousX;
-                const deltaY = y - previousY;
-                
-                // Directly update rotation for immediate feedback
-                rotationY += deltaX * 0.5;
-                rotationX -= deltaY * 0.5;
+            // --- Interactive 3D Cube Logic (Mobile & Touch Friendly) ---
+            const cube = document.getElementById('cube');
+            const scene = document.querySelector('.scene');
+            let isDragging = false;
+            let previousX = 0;
+            let previousY = 0;
+            let rotationX = 0;
+            let rotationY = 0;
+            let velocityX = 0;
+            let velocityY = 0;
+            const friction = 0.98;
+            let autoRotateEnabled = true;
+            const autoRotateSpeed = 0.1;
 
-                // Update velocity for the flick-to-spin effect after release
-                velocityY = deltaX * 0.5;
-                velocityX = -deltaY * 0.5;
-
+            const startDrag = (x, y) => {
+                isDragging = true;
                 previousX = x;
                 previousY = y;
+                velocityX = 0;
+                velocityY = 0;
+            };
+
+            const drag = (x, y) => {
+                if (isDragging) {
+                    const deltaX = x - previousX;
+                    const deltaY = y - previousY;
+                    rotationY += deltaX * 0.5;
+                    rotationX -= deltaY * 0.5;
+                    velocityY = deltaX * 0.5;
+                    velocityX = -deltaY * 0.5;
+                    previousX = x;
+                    previousY = y;
+                }
+            };
+
+            const endDrag = () => { isDragging = false; };
+
+            if (scene) {
+                scene.addEventListener('mousedown', (e) => startDrag(e.clientX, e.clientY));
+                window.addEventListener('mousemove', (e) => drag(e.clientX, e.clientY));
+                window.addEventListener('mouseup', endDrag);
+                window.addEventListener('mouseleave', endDrag);
+                scene.addEventListener('touchstart', (e) => { e.preventDefault(); startDrag(e.touches[0].clientX, e.touches[0].clientY); }, { passive: false });
+                window.addEventListener('touchmove', (e) => { if (isDragging) { e.preventDefault(); drag(e.touches[0].clientX, e.touches[0].clientY); } }, { passive: false });
+                window.addEventListener('touchend', endDrag);
+                window.addEventListener('touchcancel', endDrag);
             }
-        };
 
-        const endDrag = () => {
-            isDragging = false;
-        };
+            function animateCube() {
+                if (!isDragging) {
+                    if (Math.abs(velocityX) > 0.01 || Math.abs(velocityY) > 0.01) {
+                        velocityX *= friction;
+                        velocityY *= friction;
+                        rotationX += velocityX;
+                        rotationY += velocityY;
+                    } else if (autoRotateEnabled) {
+                        rotationY += autoRotateSpeed;
+                    }
+                }
+                if(cube) {
+                    cube.style.transform = `translateZ(-100px) rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+                }
+                requestAnimationFrame(animateCube);
+            }
+            animateCube();
 
-        // Mouse Events
-        scene.addEventListener('mousedown', (e) => startDrag(e.clientX, e.clientY));
-        window.addEventListener('mousemove', (e) => drag(e.clientX, e.clientY));
-        window.addEventListener('mouseup', endDrag);
-        window.addEventListener('mouseleave', endDrag); // Stop dragging if mouse leaves window
+            // --- Fade-in Animation on Scroll ---
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+            const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+            faders.forEach(fader => { appearOnScroll.observe(fader); });
 
-        // Touch Events
-        scene.addEventListener('touchstart', (e) => {
-            e.preventDefault(); // Prevent page from scrolling while dragging cube
-            startDrag(e.touches[0].clientX, e.touches[0].clientY);
-        }, { passive: false });
+            // --- Netlify Form Submission (Improved) ---
+            const waitlistForm = document.getElementById('waitlist-form');
+            const submitBtn = document.getElementById('waitlist-submit-btn');
+            const btnText = submitBtn?.querySelector('.button-text');
+            const spinner = submitBtn?.querySelector('.spinner');
+            const errorMessage = document.getElementById('error-message');
+            const emailInput = document.getElementById('email-input');
 
-        window.addEventListener('touchmove', (e) => {
-            if (isDragging) {
+            waitlistForm?.addEventListener('submit', event => {
+                event.preventDefault();
+                if (!emailInput.value || !emailInput.checkValidity()) {
+                    errorMessage.textContent = 'Please provide a valid email address.';
+                    errorMessage.classList.remove('hidden');
+                    return;
+                }
+                errorMessage.classList.add('hidden');
+                submitBtn.disabled = true;
+                btnText.classList.add('hidden');
+                spinner.classList.remove('hidden');
+
+                const formData = new FormData(waitlistForm);
+                const body = new URLSearchParams(formData).toString();
+                fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: body
+                })
+                .then(() => {
+                    showPage('success-modal');
+                    waitlistForm.reset();
+                })
+                .catch(error => {
+                    errorMessage.textContent = 'Submission failed. Please try again later.';
+                    errorMessage.classList.remove('hidden');
+                    console.error('Form submission error:', error);
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    btnText.classList.remove('hidden');
+                    spinner.classList.add('hidden');
+                });
+            });
+
+            // --- Join Waitlist Button Logic ---
+            const joinWaitlistBtn = document.getElementById('join-waitlist-btn');
+            joinWaitlistBtn?.addEventListener('click', function(e) {
                 e.preventDefault();
-                drag(e.touches[0].clientX, e.touches[0].clientY);
-            }
-        }, { passive: false });
+                const waitlistSection = document.getElementById('waitlist');
+                waitlistSection?.scrollIntoView({ behavior: 'smooth' });
+                emailInput?.focus({ preventScroll: true });
+            });
 
-        window.addEventListener('touchend', endDrag);
-        window.addEventListener('touchcancel', endDrag);
+            // --- Overlay/Modal Page Logic ---
+            const legalLinks = document.querySelectorAll('.legal-link');
+            const overlayPages = document.querySelectorAll('.overlay-page');
+            const closeButtons = document.querySelectorAll('.close-overlay-btn');
 
-        function animateCube() {
-            if (!isDragging) {
-                // If there's velocity from a flick, apply friction and continue the spin
-                if (Math.abs(velocityX) > 0.01 || Math.abs(velocityY) > 0.01) {
-                    velocityX *= friction;
-                    velocityY *= friction;
-                    rotationX += velocityX;
-                    rotationY += velocityY;
-                } else {
-                    // Otherwise, auto-rotate at a constant speed
-                    rotationY += autoRotateSpeed;
+            function showPage(pageId) {
+                const page = document.getElementById(pageId);
+                if (page) {
+                    page.classList.add('active');
+                    document.body.style.overflow = 'hidden';
                 }
             }
+
+            function hideAllPages() {
+                overlayPages.forEach(page => page.classList.remove('active'));
+                document.body.style.overflow = '';
+            }
+
+            legalLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const pageId = link.getAttribute('href').substring(1);
+                    showPage(pageId);
+                });
+            });
+
+            closeButtons.forEach(button => {
+                button.addEventListener('click', hideAllPages);
+            });
+
+            // --- Background Music Logic ---
+            const soundToggle = document.getElementById('sound-toggle');
+            const soundOnIcon = document.getElementById('sound-on-icon');
+            const soundOffIcon = document.getElementById('sound-off-icon');
+            const music = document.getElementById('background-music');
+            let musicStarted = false;
             
-            if(cube) {
-                cube.style.transform = `translateZ(-100px) rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
-            }
+            if(music) music.volume = 0.1;
 
-            requestAnimationFrame(animateCube);
-        }
-        animateCube();
-
-        // --- Fade-in Animation on Scroll ---
-        const faders = document.querySelectorAll('.fade-in');
-        const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
-        const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
+            soundToggle?.addEventListener('click', () => {
+                if (!musicStarted) {
+                    music?.play().catch(e => console.log("Audio play was prevented by browser."));
+                    musicStarted = true;
                 }
+                music.muted = !music.muted;
+                soundOnIcon?.classList.toggle('hidden', music.muted);
+                soundOffIcon?.classList.toggle('hidden', !music.muted);
             });
-        }, appearOptions);
-        faders.forEach(fader => { appearOnScroll.observe(fader); });
 
-        // --- Netlify Form Submission (Improved) ---
-        const waitlistForm = document.getElementById('waitlist-form');
-        const successModal = document.getElementById('success-modal');
-        const errorMessage = document.getElementById('error-message');
-        const emailInput = document.getElementById('email-input');
+            // --- Cookie Consent Logic ---
+            const cookieBanner = document.getElementById('cookie-consent-banner');
+            const acceptBtn = document.getElementById('cookie-accept');
+            const declineBtn = document.getElementById('cookie-decline');
+            const manageCookiesLink = document.getElementById('manage-cookies');
 
-        waitlistForm.addEventListener('submit', event => {
-            event.preventDefault();
-            if (!emailInput.value || !emailInput.checkValidity()) {
-                errorMessage.textContent = 'Please provide a valid email address.';
-                errorMessage.classList.remove('hidden');
-                return;
+            if (!localStorage.getItem('cookie_consent_status')) {
+                cookieBanner?.classList.remove('hidden');
             }
-            errorMessage.classList.add('hidden');
-            const formData = new FormData(waitlistForm);
-            const body = new URLSearchParams(formData).toString();
-            fetch('/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: body
-            })
-            .then(() => {
-                showPage('success-modal');
-                waitlistForm.reset();
-            })
-            .catch(error => {
-                errorMessage.textContent = 'Submission failed. Please try again later.';
-                errorMessage.classList.remove('hidden');
-                console.error('Form submission error:', error);
+
+            acceptBtn?.addEventListener('click', () => {
+                localStorage.setItem('cookie_consent_status', 'granted');
+                cookieBanner?.classList.add('hidden');
             });
-        });
 
-        // --- Join Waitlist Button Logic ---
-        const joinWaitlistBtn = document.getElementById('join-waitlist-btn');
-        joinWaitlistBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const waitlistSection = document.getElementById('waitlist');
-            waitlistSection.scrollIntoView({ behavior: 'smooth' });
-            emailInput.focus({ preventScroll: true });
-        });
+            declineBtn?.addEventListener('click', () => {
+                localStorage.setItem('cookie_consent_status', 'denied');
+                cookieBanner?.classList.add('hidden');
+            });
 
-        // --- Overlay/Modal Page Logic ---
-        const legalLinks = document.querySelectorAll('.legal-link');
-        const overlayPages = document.querySelectorAll('.overlay-page');
-        const closeButtons = document.querySelectorAll('.close-overlay-btn');
-
-        function showPage(pageId) {
-            const page = document.getElementById(pageId);
-            if (page) {
-                page.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function hideAllPages() {
-            overlayPages.forEach(page => page.classList.remove('active'));
-            document.body.style.overflow = '';
-        }
-
-        legalLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
+            manageCookiesLink?.addEventListener('click', (e) => {
                 e.preventDefault();
-                const pageId = link.getAttribute('href').substring(1);
-                showPage(pageId);
+                localStorage.removeItem('cookie_consent_status');
+                cookieBanner?.classList.remove('hidden');
             });
-        });
 
-        closeButtons.forEach(button => {
-            button.addEventListener('click', hideAllPages);
-        });
-
-        // --- Background Music Logic ---
-        const soundToggle = document.getElementById('sound-toggle');
-        const soundOnIcon = document.getElementById('sound-on-icon');
-        const soundOffIcon = document.getElementById('sound-off-icon');
-        const music = document.getElementById('background-music');
-        let musicStarted = false;
-        
-        music.volume = 0.1;
-
-        soundToggle.addEventListener('click', () => {
-            if (!musicStarted) {
-                const playPromise = music.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(e => console.log("Audio play was prevented. User must interact with the page first."));
+            // --- Animation Controls Logic ---
+            const toggleParticles = document.getElementById('toggle-particles');
+            toggleParticles?.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    particlesInstance?.play();
+                } else {
+                    particlesInstance?.pause();
                 }
-                musicStarted = true;
-            }
-            music.muted = !music.muted;
-            soundOnIcon.classList.toggle('hidden', music.muted);
-            soundOffIcon.classList.toggle('hidden', !music.muted);
-        });
+            });
 
-        // --- Cookie Consent Logic ---
-        const cookieBanner = document.getElementById('cookie-consent-banner');
-        const acceptBtn = document.getElementById('cookie-accept');
-        const declineBtn = document.getElementById('cookie-decline');
-        const manageCookiesLink = document.getElementById('manage-cookies');
-
-        if (!localStorage.getItem('cookie_consent_status')) {
-            cookieBanner.classList.remove('hidden');
-        }
-
-        acceptBtn.addEventListener('click', () => {
-            localStorage.setItem('cookie_consent_status', 'granted');
-            cookieBanner.classList.add('hidden');
-        });
-
-        declineBtn.addEventListener('click', () => {
-            localStorage.setItem('cookie_consent_status', 'denied');
-            cookieBanner.classList.add('hidden');
-        });
-
-        manageCookiesLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            localStorage.removeItem('cookie_consent_status');
-            cookieBanner.classList.remove('hidden');
+            const toggleCubeRotation = document.getElementById('toggle-cube-rotation');
+            toggleCubeRotation?.addEventListener('change', (e) => {
+                autoRotateEnabled = e.target.checked;
+            });
         });
     </script>
 </body>
