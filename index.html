@@ -23,9 +23,16 @@
 
     <title>Operator Uplift - AI-Powered Self-Progression</title>
     
-    <!-- Favicon -->
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="alternate icon" href="/favicon.png">
+    <!-- Favicon & App Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#f97316">
+    <meta name="msapplication-TileColor" content="#0a0a0a">
+    <meta name="theme-color" content="#0a0a0a">
+    <link rel="icon" href="/favicon.ico"> <!-- Fallback ICO -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml"> <!-- Preferred SVG -->
 
 
     <!-- Analytics & Tracking -->
@@ -140,6 +147,11 @@
         .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
         input:checked + .slider { background-color: var(--accent-color); }
         input:checked + .slider:before { transform: translateX(18px); }
+        
+        /* Hide the default reCAPTCHA badge */
+        .grecaptcha-badge { 
+            visibility: hidden; 
+        }
 
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         @keyframes fadeInScale { to { opacity: 1; transform: scale(1); } }
@@ -213,8 +225,9 @@
 
                 <!-- Waitlist Form -->
                 <div id="waitlist" class="max-w-md mx-auto mt-8">
-                    <form id="waitlist-form" name="waitlist" method="POST" data-netlify="true" data-netlify-recaptcha="true" class="flex flex-col sm:flex-row gap-3">
+                    <form id="waitlist-form" name="waitlist" method="POST" data-netlify="true" data-netlify-recaptcha="true" data-netlify-honeypot="bot-field" class="flex flex-col sm:flex-row gap-3">
                         <input type="hidden" name="form-name" value="waitlist" />
+                        <p class="hidden"><label>Don’t fill this out if you’re human: <input name="bot-field" /></label></p>
                         <input type="email" name="email" id="email-input" required placeholder="your-email@domain.com" aria-label="Email for waitlist" class="flex-grow w-full px-5 py-3.5 rounded-lg bg-zinc-900 border border-zinc-700 text-slate-200 focus:ring-4 focus:ring-orange-500/50 focus:border-orange-500 outline-none transition-all duration-300" />
                         <button type="submit" id="waitlist-submit-btn" class="bg-[var(--accent-color)] text-black font-bold px-6 py-3.5 rounded-lg hover:bg-[var(--accent-hover)] transition-colors duration-300 accent-glow-button flex items-center justify-center whitespace-nowrap">
                             <span class="button-text">Get Early Access</span>
@@ -359,6 +372,11 @@
                 <div class="flex items-center gap-3"><label for="toggle-particles" class="cursor-pointer">Background Particles</label><label class="toggle-switch"><input type="checkbox" id="toggle-particles" checked><span class="slider"></span></label></div>
                 <div class="flex items-center gap-3"><label for="toggle-cube-rotation" class="cursor-pointer">Cube Rotation</label><label class="toggle-switch"><input type="checkbox" id="toggle-cube-rotation" checked><span class="slider"></span></label></div>
             </div>
+            <p class="text-xs text-slate-600 mt-6">
+                This site is protected by reCAPTCHA and the Google
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="underline hover:text-slate-400">Privacy Policy</a> and
+                <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" class="underline hover:text-slate-400">Terms of Service</a> apply.
+            </p>
         </footer>
     </div>
 
@@ -371,6 +389,7 @@
     <!-- Cookie Consent Banner -->
     <div id="cookie-consent-banner" class="fixed bottom-0 left-0 right-0 p-4 z-50 hidden"><div class="glass-card container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-lg"><p class="text-sm text-slate-300">We use essential cookies to make our site work. For more details, see our <a href="#cookies" class="legal-link text-[var(--accent-color)] hover:underline">Cookie Policy</a> and <a href="#privacy" class="legal-link text-[var(--accent-color)] hover:underline">Privacy Policy</a>.</p><div class="flex gap-3 flex-shrink-0"><button id="cookie-decline" class="px-5 py-2 rounded-lg text-sm font-semibold text-slate-300 hover:bg-zinc-700 transition-colors">Decline</button><button id="cookie-accept" class="px-5 py-2 rounded-lg text-sm font-semibold bg-[var(--accent-color)] text-black hover:bg-[var(--accent-hover)] transition-colors">Accept</button></div></div></div>
 
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js" defer></script>
     
     <script>
