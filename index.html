@@ -3,820 +3,655 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO & Social Sharing Meta Tags -->
+    <meta name="description" content="Operator Uplift uses AI to deconstruct your most ambitious goals into actionable execution plans. Join the waitlist for the future of self-progression.">
+    <meta property="og:title" content="Operator Uplift - AI-Powered Self-Progression">
+    <meta property="og:description" content="Deconstruct your ambition. Engineer your ascent with AI-generated roadmaps.">
+    <meta property="og:image" content="https://placehold.co/1200x630/0a0a0a/f97316?text=Operator%0AUplift">
+    <meta property="og:site_name" content="Operator Uplift">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.operatoruplift.com/">
+
     <title>Operator Uplift - AI-Powered Self-Progression</title>
+    
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M25.0558 23.4284L16 28.5713L6.94421 23.4284V13.1427L16 8L25.0558 13.1427V23.4284Z' stroke='%23f97316' stroke-width='2'/><path d='M16 18.2857L16 8M16 18.2857L22.9282 22.1429M16 18.2857L9.0718 22.1429' stroke='%23f97316' stroke-width='1.5'/></svg>" type="image/svg+xml">
+    <link rel="alternate icon" href="https://placehold.co/32x32/f97316/0a0a0a?text=OU" onerror="this.onerror=null;this.href='https://placehold.co/32x32/f97316/ffffff?text=OU';">
 
 
+    <!-- Analytics & Tracking -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EWV7VG9M61"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EWV7VG9M61');
+    </script>
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1462196764930097');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1462196764930097&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- reCAPTCHA v3 Script -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LelQ5ErAAAAABRxSDOpd1UsqfZPp4sqXVIQQZgV"></script>
+    
+    <!-- Stylesheets and Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg-color: #0a0a0a;
-            --accent-color: #f97316; /* Vibrant Orange */
+            --accent-color: #f97316;
+            --accent-hover: #fb923c;
             --text-color: #e5e7eb;
             --text-muted-color: #9ca3af;
         }
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            overflow-x: hidden;
-        }
-        /* Custom Glowing Cursor */
-        .custom-cursor {
-            position: fixed;
-            left: 0;
-            top: 0;
-            pointer-events: none;
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            background: rgba(249, 115, 22, 0.2);
-            box-shadow: 0 0 15px var(--accent-color), 0 0 25px var(--accent-color);
-            transform: translate(-50%, -50%);
-            transition: transform 0.1s ease-out;
-            z-index: 9999;
-        }
-        @media (hover: none) and (pointer: coarse) {
-            .custom-cursor {
-                display: none;
-            }
-        }
-        #tsparticles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-        .page-content {
-            position: relative;
-            z-index: 10;
-        }
-        .glass-card {
-            background: rgba(24, 24, 27, 0.4);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: background 0.3s ease, border 0.3s ease, transform 0.3s ease;
-        }
-        .glass-card:hover {
-            background: rgba(24, 24, 27, 0.6);
-            border: 1px solid rgba(249, 115, 22, 0.3);
-            transform: translateY(-5px);
-        }
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .accent-glow-text {
-            color: var(--accent-color);
-            text-shadow: 0 0 8px rgba(249, 115, 22, 0.6), 0 0 20px rgba(249, 115, 22, 0.4);
-            animation: flicker 3s infinite alternate;
-        }
-        .accent-glow-button {
-            box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
-        }
-        .accent-glow-button:hover {
-            box-shadow: 0 0 30px rgba(249, 115, 22, 0.6);
-        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-color); overflow-x: hidden; }
         
-        /* 3D Cube styles */
-        .scene {
-            width: 200px;
-            height: 200px;
-            perspective: 2000px;
-            margin: 40px auto;
-            cursor: grab;
+        .custom-cursor { position: fixed; left: 0; top: 0; pointer-events: none; border-radius: 50%; width: 32px; height: 32px; background: rgba(249, 115, 22, 0.2); box-shadow: 0 0 15px var(--accent-color), 0 0 25px var(--accent-color); transform: translate(-50%, -50%); transition: transform 0.1s ease-out; z-index: 9999; }
+        @media (hover: none) and (pointer: coarse) { .custom-cursor { display: none; } }
+        
+        #tsparticles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        .page-content { position: relative; z-index: 10; }
+        
+        .glass-card { background: rgba(24, 24, 27, 0.5); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease; }
+        .glass-card:hover { background: rgba(24, 24, 27, 0.7); border-color: rgba(249, 115, 22, 0.3); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); }
+        @media (max-width: 768px) { .glass-card { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); } }
+        
+        .accent-glow-text { color: var(--accent-color); text-shadow: 0 0 8px rgba(249, 115, 22, 0.6), 0 0 20px rgba(249, 115, 22, 0.4); animation: flicker 3s infinite alternate; }
+        .accent-glow-button { box-shadow: 0 0 20px rgba(249, 115, 22, 0.4); }
+        .accent-glow-button:hover { box-shadow: 0 0 30px rgba(249, 115, 22, 0.6); }
+
+        .hero-gradient-wrapper { position: relative; }
+        .hero-gradient-wrapper::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 60vh; background: radial-gradient(ellipse at top, rgba(249, 115, 22, 0.1) 0%, transparent 60%); z-index: 1; pointer-events: none; transition: opacity 0.3s; }
+        header, main { position: relative; z-index: 2; }
+        
+        @media (prefers-contrast: high) {
+            .hero-gradient-wrapper::before { opacity: 0.05; }
         }
-        .scene:active {
-            cursor: grabbing;
-        }
-        .cube {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            transform: translateZ(-100px);
-        }
-        .cube-face {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            border: 2px solid var(--accent-color);
-            background: rgba(249, 115, 22, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 15px rgba(249, 115, 22, 0.3), inset 0 0 10px rgba(249, 115, 22, 0.2);
-            animation: pulse-glow 4s infinite ease-in-out;
-        }
+
+        .scene { width: 200px; height: 200px; perspective: 2000px; margin: 40px auto; cursor: grab; }
+        .scene:active { cursor: grabbing; }
+        .cube { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transform: translateZ(-100px); }
+        .cube-face { position: absolute; width: 200px; height: 200px; border: 2px solid var(--accent-color); background: rgba(249, 115, 22, 0.05); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(249, 115, 22, 0.3), inset 0 0 10px rgba(249, 115, 22, 0.2); animation: pulse-glow 4s infinite ease-in-out; }
         .cube-face-front  { transform: rotateY(  0deg) translateZ(100px); }
         .cube-face-right  { transform: rotateY( 90deg) translateZ(100px); }
         .cube-face-back   { transform: rotateY(180deg) translateZ(100px); }
         .cube-face-left   { transform: rotateY(-90deg) translateZ(100px); }
         .cube-face-top    { transform: rotateX( 90deg) translateZ(100px); }
         .cube-face-bottom { transform: rotateX(-90deg) translateZ(100px); }
-        .cube-logo {
-            filter: drop-shadow(0 0 8px var(--accent-color));
-        }
+        .cube-logo { filter: drop-shadow(0 0 8px var(--accent-color)); }
 
         /* Modal & Legal Page Styles */
-        .overlay-page {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            z-index: 100;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-            overflow-y: auto;
-            padding: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        /* UPDATE: Added is-scrollable class to fix legal page scrolling on mobile */
-        .overlay-page.is-scrollable {
-            align-items: flex-start;
-        }
-        .overlay-page.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        .modal-content h2, .legal-content h2 {
-            font-size: 2.25rem;
-            font-weight: 700;
-            color: var(--accent-color);
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 10px rgba(249, 115, 22, 0.4);
-        }
-        .legal-content h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text-color);
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-        }
-        .legal-content p, .legal-content ul, .faq-answer {
-            color: var(--text-muted-color);
-            margin-bottom: 1rem;
-            line-height: 1.7;
-        }
-        .legal-content li {
-            margin-left: 1.5rem;
-            list-style-type: disc;
-        }
-        .legal-content a {
-            color: var(--accent-color);
-            text-decoration: underline;
-        }
+        .overlay-page { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 100; opacity: 0; visibility: hidden; transition: opacity 0.3s ease; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+        .overlay-page.is-scrollable { align-items: flex-start; padding-top: 5vh; }
+        .overlay-page.active { opacity: 1; visibility: visible; }
+        .modal-content-wrapper { max-height: 90vh; overflow-y: auto; background: rgba(24, 24, 27, 0.9); border-radius: 1rem; border: 1px solid rgba(255, 255, 255, 0.1); padding: 2rem; transition: transform 0.3s ease, opacity 0.3s ease; transform: scale(0.95); opacity: 0; }
+        .overlay-page.active .modal-content-wrapper { transform: scale(1); opacity: 1; }
+        .modal-content-wrapper h2 { font-size: 2.25rem; font-weight: 700; color: var(--accent-color); margin-bottom: 1.5rem; text-shadow: 0 0 10px rgba(249, 115, 22, 0.4); }
+        .modal-content-wrapper h3 { font-size: 1.5rem; font-weight: 600; color: var(--text-color); margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; }
+        .modal-content-wrapper p, .modal-content-wrapper ul { color: var(--text-muted-color); margin-bottom: 1.5rem; line-height: 1.8; }
+        .modal-content-wrapper ul { margin-left: 1.5rem; list-style-type: disc; }
+        .modal-content-wrapper a { color: var(--accent-hover); text-decoration: underline; transition: color 0.2s; }
+        .modal-content-wrapper a:hover { color: var(--text-color); }
+        .faq-answer { padding-top: 0.5rem; }
 
-        /* Loading Screen */
-        #loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: var(--bg-color);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.5s ease-out;
-        }
-        #loading-screen svg {
-            width: 80px;
-            height: 80px;
-            opacity: 0;
-            transform: scale(0.8);
-            animation: fadeInScale 1s ease-out forwards, pulse 2s infinite ease-in-out 1s;
-        }
+        .modal-content-wrapper::-webkit-scrollbar { width: 8px; }
+        .modal-content-wrapper::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+        .modal-content-wrapper::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 10px; }
+        .modal-content-wrapper::-webkit-scrollbar-thumb:hover { background: var(--accent-hover); }
+
+        #loading-screen { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: var(--bg-color); z-index: 10000; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s ease-out; }
+        #loading-screen svg { width: 80px; height: 80px; opacity: 0; transform: scale(0.8); animation: fadeInScale 1s ease-out forwards, pulse 2s infinite ease-in-out 1s; }
         
-        /* ADDITION: Accessibility & UI styles */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--accent-color);
-            color: black;
-            padding: 8px;
-            z-index: 100;
-            transition: top 0.3s;
-        }
-        .skip-link:focus {
-            top: 0;
-        }
-        .spinner {
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 40px;
-            height: 22px;
-        }
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #3f3f46;
-            transition: .4s;
-            border-radius: 22px;
-        }
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 16px;
-            width: 16px;
-            left: 3px;
-            bottom: 3px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-        input:checked + .slider {
-            background-color: var(--accent-color);
-        }
-        input:checked + .slider:before {
-            transform: translateX(18px);
-        }
+        .skip-link { position: absolute; top: -40px; left: 0; background: var(--accent-color); color: black; padding: 8px; z-index: 100; transition: top 0.3s; }
+        .skip-link:focus { top: 0; }
+        .spinner { animation: spin 1s linear infinite; }
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .trust-badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(249, 115, 22, 0.1); border: 1px solid rgba(249, 115, 22, 0.3); border-radius: 2rem; font-size: 0.875rem; color: var(--accent-color); }
+        .toggle-switch { position: relative; display: inline-block; width: 40px; height: 22px; }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #3f3f46; transition: .4s; border-radius: 22px; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--accent-color); }
+        input:checked + .slider:before { transform: translateX(18px); }
 
-
-        /* Animations */
-        @keyframes fadeInScale {
-            to { opacity: 1; transform: scale(1); }
-        }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-        @keyframes flicker {
-            0%, 100% { text-shadow: 0 0 8px rgba(249, 115, 22, 0.6), 0 0 20px rgba(249, 115, 22, 0.4); }
-            50% { text-shadow: 0 0 12px rgba(249, 115, 22, 0.8), 0 0 30px rgba(249, 115, 22, 0.6); }
-        }
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 15px rgba(249, 115, 22, 0.3), inset 0 0 10px rgba(249, 115, 22, 0.2); }
-            50% { box-shadow: 0 0 25px rgba(249, 115, 22, 0.5), inset 0 0 15px rgba(249, 115, 22, 0.4); }
-        }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes fadeInScale { to { opacity: 1; transform: scale(1); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes flicker { 0%, 100% { text-shadow: 0 0 8px rgba(249, 115, 22, 0.6), 0 0 20px rgba(249, 115, 22, 0.4); } 50% { text-shadow: 0 0 12px rgba(249, 115, 22, 0.7), 0 0 30px rgba(249, 115, 22, 0.5); } }
+        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 15px rgba(249, 115, 22, 0.3), inset 0 0 10px rgba(249, 115, 22, 0.2); } 50% { box-shadow: 0 0 25px rgba(249, 115, 22, 0.5), inset 0 0 15px rgba(249, 115, 22, 0.4); } }
     </style>
 </head>
 <body class="antialiased">
     
-    <!-- ADDITION: Accessibility skip link -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- Loading Screen -->
     <div id="loading-screen">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.0558 23.4284L16 28.5713L6.94421 23.4284V13.1427L16 8L25.0558 13.1427V23.4284Z" stroke="var(--accent-color)" stroke-width="2"/><g><path d="M16 18.2857L16 8M16 18.2857L22.9282 22.1429M16 18.2857L9.0718 22.1429" stroke="var(--accent-color)" stroke-width="1.5"/></g></svg>
+        <svg alt="Loading Logo" width="80" height="80" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.0558 23.4284L16 28.5713L6.94421 23.4284V13.1427L16 8L25.0558 13.1427V23.4284Z" stroke="var(--accent-color)" stroke-width="2"/><g><path d="M16 18.2857L16 8M16 18.2857L22.9282 22.1429M16 18.2857L9.0718 22.1429" stroke="var(--accent-color)" stroke-width="1.5"/></g></svg>
     </div>
 
-    <!-- Custom Cursor -->
     <div class="custom-cursor"></div>
-
-    <!-- Animated Background -->
-    <div id="tsparticles"></div>
-    
-    <!-- Background Music -->
-    <audio id="background-music" src="music.mp3" loop></audio>
+    <div id="tsparticles" aria-hidden="true"></div>
+    <!-- For production, compress music.mp3 to <100KB using FFmpeg or an online tool -->
+    <audio id="background-music" src="music.mp3" loop preload="none"></audio>
 
     <div id="main-content" class="page-content">
-        <!-- Header -->
-        <header class="container mx-auto px-6 py-8 md:py-10 flex justify-between items-center mb-12 md:mb-16">
-            <a href="#" class="flex items-center gap-3">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.0558 23.4284L16 28.5713L6.94421 23.4284V13.1427L16 8L25.0558 13.1427V23.4284Z" stroke="var(--accent-color)" stroke-width="2"/><g><path d="M16 18.2857L16 8M16 18.2857L22.9282 22.1429M16 18.2857L9.0718 22.1429" stroke="var(--accent-color)" stroke-width="1.5"/></g></svg>
-                <span class="text-2xl font-bold text-slate-50">Operator Uplift</span>
-            </a>
-            <div class="flex items-center gap-4">
-                <button id="sound-toggle" class="text-slate-400 hover:text-white transition-colors">
-                    <svg id="sound-on-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-                    <svg id="sound-off-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
-                </button>
-                <a href="#waitlist" id="join-waitlist-btn" class="bg-slate-50 text-slate-900 font-semibold px-5 py-2.5 rounded-lg hover:bg-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(249,115,22,0.5)]">Join Waitlist</a>
-            </div>
-        </header>
+        <div class="hero-gradient-wrapper">
+            <!-- Header -->
+            <header class="container mx-auto px-6 py-8 md:py-10 flex justify-between items-center mb-12 md:mb-16">
+                <a href="#waitlist" id="header-logo-link" class="flex items-center gap-3" aria-label="Operator Uplift Home, scroll to waitlist">
+                    <svg alt="Operator Uplift Logo" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.0558 23.4284L16 28.5713L6.94421 23.4284V13.1427L16 8L25.0558 13.1427V23.4284Z" stroke="var(--accent-color)" stroke-width="2"/><g><path d="M16 18.2857L16 8M16 18.2857L22.9282 22.1429M16 18.2857L9.0718 22.1429" stroke="var(--accent-color)" stroke-width="1.5"/></g></svg>
+                    <span class="text-2xl font-bold text-slate-50">Operator Uplift</span>
+                </a>
+                <div class="flex items-center gap-4">
+                    <button id="sound-toggle" aria-label="Toggle Sound" class="text-slate-400 hover:text-white transition-colors">
+                        <svg id="sound-on-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                        <svg id="sound-off-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+                    </button>
+                    <a href="#waitlist" id="join-waitlist-btn-header" class="bg-slate-50 text-slate-900 font-semibold px-5 py-2.5 rounded-lg hover:bg-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(249,115,22,0.5)]">Join Waitlist</a>
+                </div>
+            </header>
 
-        <!-- Hero Section -->
-        <main class="container mx-auto px-6 text-center fade-in">
-            <h2 class="text-4xl md:text-6xl font-bold leading-tight mb-8">Deconstruct Your Ambition. <span class="accent-glow-text">Engineer Your Ascent.</span></h2>
-            
-            <div class="scene">
-                <div class="cube" id="cube">
-                    <!-- Cube faces with logo -->
-                    <div class="cube-face cube-face-front"><svg class="cube-logo" width="80" height="80" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.0558 23.4284L16 28.5713L6.94421 23.4284V13.1427L16 8L25.0558 13.1427V23.4284Z" stroke="var(--accent-color)" stroke-width="2"/><g><path d="M16 18.2857L16 8M16 18.2857L22.9282 22.1429M16 18.2857L9.0718 22.1429" stroke="var(--accent-color)" stroke-width="1.5"/></g></svg></div>
-                    <div class="cube-face cube-face-back"><svg class="cube-logo" width="80" height="80" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.0558 23.4284L16 28.5713L6.94421 23.4284V13.1427L16 8L25.0558 13.1427V23.4284Z" stroke="var(--accent-color)" stroke-width="2"/><g><path d="M16 18.2857L16 8M16 18.2857L22.9282 22.1429M16 18.2857L9.0718 22.1429" stroke="var(--accent-color)" stroke-width="1.5"/></g></svg></div>
-                    <div class="cube-face cube-face-right"><svg class="cube-logo" width="80" height="80" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.0558 23.4284L16 28.5713L6.94421 23.4284V13.1427L16 8L25.0558 13.1427V23.4284Z" stroke="var(--accent-color)" stroke-width="2"/><g><path d="M16 18.2857L16 8M16 18.2857L22.9282 22.1429M16 18.2857L9.0718 22.1429" stroke="var(--accent-color)" stroke-width="1.5"/></g></svg></div>
-                    <div class="cube-face cube-face-left"><svg class="cube-logo" width="80" height="80" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.0558 23.4284L16 28.5713L6.94421 23.4284V13.1427L16 8L25.0558 13.1427V23.4284Z" stroke="var(--accent-color)" stroke-width="2"/><g><path d="M16 18.2857L16 8M16 18.2857L22.9282 22.1429M16 18.2857L9.0718 22.1429" stroke="var(--accent-color)" stroke-width="1.5"/></g></svg></div>
-                    <div class="cube-face cube-face-top"><svg class="cube-logo" width="80" height="80" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.0558 23.4284L16 28.5713L6.94421 23.4284V13.1427L16 8L25.0558 13.1427V23.4284Z" stroke="var(--accent-color)" stroke-width="2"/><g><path d="M16 18.2857L16 8M16 18.2857L22.9282 22.1429M16 18.2857L9.0718 22.1429" stroke="var(--accent-color)" stroke-width="1.5"/></g></svg></div>
-                    <div class="cube-face cube-face-bottom"><svg class="cube-logo" width="80" height="80" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.0558 23.4284L16 28.5713L6.94421 23.4284V13.1427L16 8L25.0558 13.1427V23.4284Z" stroke="var(--accent-color)" stroke-width="2"/><g><path d="M16 18.2857L16 8M16 18.2857L22.9282 22.1429M16 18.2857L9.0718 22.1429" stroke="var(--accent-color)" stroke-width="1.5"/></g></svg></div>
+            <!-- Hero Section -->
+            <main class="container mx-auto px-6 text-center fade-in">
+                 <div class="flex flex-wrap gap-3 justify-center mb-6">
+                    <span class="trust-badge">
+                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22a10 10 0 100-20 10 10 0 000 20zm-2-9h4v4h-4v-4zm0-6h4v4h-4V7z"/></svg>
+                        AI-Powered
+                    </span>
+                    <div id="countdown-badge" class="trust-badge">
+                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span>Limited Beta Spots</span>
+                    </div>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-black leading-tight mb-6">
+                    Deconstruct Your Ambition.<br>
+                    <span class="accent-glow-text">Engineer Your Ascent.</span>
+                </h1>
+                <p class="max-w-2xl mx-auto text-lg md:text-xl text-slate-400 mb-8 leading-relaxed">
+                    Operator Uplift uses AI to build the execution plan for your most ambitious goals.
+                </p>
+                
+                <!-- 3D Cube -->
+                <div class="scene" aria-hidden="true">
+                    <div class="cube" id="cube">
+                        <div class="cube-face cube-face-front"><svg class="cube-logo" alt="Cube Face Logo" width="80" height="80" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.0558 23.4284L16 28.5713L6.94421 23.4284V13.1427L16 8L25.0558 13.1427V23.4284Z" stroke="var(--accent-color)" stroke-width="2"/><g><path d="M16 18.2857L16 8M16 18.2857L22.9282 22.1429M16 18.2857L9.0718 22.1429" stroke="var(--accent-color)" stroke-width="1.5"/></g></svg></div>
+                        <div class="cube-face cube-face-back"><svg class="cube-logo" alt="Cube Face Logo" width="80" height="80" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.0558 23.4284L16 28.5713L6.94421 23.4284V13.1427L16 8L25.0558 13.1427V23.4284Z" stroke="var(--accent-color)" stroke-width="2"/><g><path d="M16 18.2857L16 8M16 18.2857L22.9282 22.1429M16 18.2857L9.0718 22.1429" stroke="var(--accent-color)" stroke-width="1.5"/></g></svg></div>
+                        <div class="cube-face cube-face-right"><svg class="cube-logo" alt="Cube Face Logo" width="80" height="80" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.0558 23.4284L16 28.5713L6.94421 23.4284V13.1427L16 8L25.0558 13.1427V23.4284Z" stroke="var(--accent-color)" stroke-width="2"/><g><path d="M16 18.2857L16 8M16 18.2857L22.9282 22.1429M16 18.2857L9.0718 22.1429" stroke="var(--accent-color)" stroke-width="1.5"/></g></svg></div>
+                        <div class="cube-face cube-face-left"><svg class="cube-logo" alt="Cube Face Logo" width="80" height="80" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.0558 23.4284L16 28.5713L6.94421 23.4284V13.1427L16 8L25.0558 13.1427V23.4284Z" stroke="var(--accent-color)" stroke-width="2"/><g><path d="M16 18.2857L16 8M16 18.2857L22.9282 22.1429M16 18.2857L9.0718 22.1429" stroke="var(--accent-color)" stroke-width="1.5"/></g></svg></div>
+                        <div class="cube-face cube-face-top"><svg class="cube-logo" alt="Cube Face Logo" width="80" height="80" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.0558 23.4284L16 28.5713L6.94421 23.4284V13.1427L16 8L25.0558 13.1427V23.4284Z" stroke="var(--accent-color)" stroke-width="2"/><g><path d="M16 18.2857L16 8M16 18.2857L22.9282 22.1429M16 18.2857L9.0718 22.1429" stroke="var(--accent-color)" stroke-width="1.5"/></g></svg></div>
+                        <div class="cube-face cube-face-bottom"><svg class="cube-logo" alt="Cube Face Logo" width="80" height="80" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.0558 23.4284L16 28.5713L6.94421 23.4284V13.1427L16 8L25.0558 13.1427V23.4284Z" stroke="var(--accent-color)" stroke-width="2"/><g><path d="M16 18.2857L16 8M16 18.2857L22.9282 22.1429M16 18.2857L9.0718 22.1429" stroke="var(--accent-color)" stroke-width="1.5"/></g></svg></div>
+                    </div>
+                </div>
+
+                <!-- Waitlist Form -->
+                <div id="waitlist" class="max-w-md mx-auto mt-8">
+                    <form id="waitlist-form" name="waitlist" class="flex flex-col sm:flex-row gap-3">
+                        <input type="email" name="email" id="email-input" required placeholder="your-email@domain.com" aria-label="Email for waitlist" class="flex-grow w-full px-5 py-3.5 rounded-lg bg-zinc-900 border border-zinc-700 text-slate-200 focus:ring-4 focus:ring-orange-500/50 focus:border-orange-500 outline-none transition-all duration-300" />
+                        <button type="submit" id="waitlist-submit-btn" class="bg-[var(--accent-color)] text-black font-bold px-6 py-3.5 rounded-lg hover:bg-[var(--accent-hover)] transition-colors duration-300 accent-glow-button flex items-center justify-center whitespace-nowrap">
+                            <span class="button-text">Get Early Access</span>
+                            <svg class="spinner h-5 w-5 ml-3 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                        </button>
+                         <div class="g-recaptcha" data-sitekey="6LelQ5ErAAAAABRxSDOpd1UsqfZPp4sqXVIQQZgV" data-size="invisible"></div>
+                    </form>
+                    <div id="form-message" class="mt-4 font-medium h-6" aria-live="polite"></div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Video Demo Placeholder -->
+        <section class="container mx-auto px-6 mt-28 md:mt-40 fade-in">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-50">See It In Action</h2>
+                <p class="text-lg text-slate-400 mt-3">A glimpse into the future of achievement.</p>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="aspect-w-16 aspect-h-9 bg-zinc-900 rounded-xl flex items-center justify-center border border-zinc-700 shadow-lg">
+                    <p class="text-slate-500">Video demo coming soon...</p>
+                    <!-- 
+                      When ready, replace the <p> with a video element:
+                      <video id="demo-video" src="demo.mp4" controls class="w-full rounded-xl shadow-xl" loading="lazy"></video>
+                      
+                      Then, add analytics for video engagement in the main script:
+                      const demoVideo = document.getElementById('demo-video');
+                      demoVideo?.addEventListener('play', () => {
+                          if (typeof gtag === 'function') {
+                              gtag('event', 'video_play', { 'event_category': 'Engagement', 'event_label': 'Demo Video' });
+                          }
+                      });
+                    -->
                 </div>
             </div>
-
-            <p class="max-w-2xl mx-auto text-lg md:text-xl text-slate-400 mt-8 mb-10">Operator Uplift uses AI to build the execution plan for your most ambitious goals.</p>
-
-            <div id="waitlist" class="max-w-md mx-auto">
-                <form id="waitlist-form" name="waitlist" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="flex flex-col sm:flex-row gap-3">
-                    <input type="hidden" name="form-name" value="waitlist" />
-                    <p class="hidden">
-                        <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
-                    </p>
-                    <input type="email" name="email" id="email-input" required placeholder="your-email@domain.com" class="flex-grow w-full px-5 py-3.5 rounded-lg bg-zinc-900 border border-zinc-700 text-slate-200 focus:ring-4 focus:ring-orange-500/50 focus:border-orange-500 outline-none transition-all duration-300" />
-                    <button type="submit" id="waitlist-submit-btn" class="bg-[var(--accent-color)] text-black font-bold px-6 py-3.5 rounded-lg hover:bg-white transition-colors duration-300 accent-glow-button flex items-center justify-center">
-                        <span class="button-text">Request Access</span>
-                        <svg class="spinner h-5 w-5 ml-3 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                    </button>
-                </form>
-                <div id="error-message" class="hidden mt-4 text-red-400 font-medium"></div>
-            </div>
-        </main>
-
+        </section>
+        
         <!-- How It Works Section -->
         <section class="container mx-auto px-6 mt-28 md:mt-40 fade-in">
             <div class="text-center mb-16">
-                <h3 class="text-3xl md:text-4xl font-bold text-slate-50">The Uplift Protocol</h3>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-50">The Uplift Protocol</h2>
                 <p class="text-lg text-slate-400 mt-3">A systematic approach to achieving the impossible.</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8 text-center">
-                <div class="glass-card p-8 rounded-xl"><div class="flex items-center justify-center h-16 w-16 mx-auto mb-6"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="m9 12 2 2 4-4"></path></svg></div><h4 class="text-xl font-semibold text-slate-50 mb-2">Define Objective</h4><p class="text-slate-400 leading-relaxed">Input a single, ambitious long-term objective. Launch a venture, master a skill, run a marathon. Define your target.</p></div>
-                <div class="glass-card p-8 rounded-xl"><div class="flex items-center justify-center h-16 w-16 mx-auto mb-6"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></div><h4 class="text-xl font-semibold text-slate-50 mb-2">Generate Roadmap</h4><p class="text-slate-400 leading-relaxed">Our AI analyzes your objective and generates a structured, mission-critical roadmap broken into tactical phases.</p></div>
-                <div class="glass-card p-8 rounded-xl"><div class="flex items-center justify-center h-16 w-16 mx-auto mb-6"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"></path><path d="m22 2-7 20-4-9-9-4 20-7z"></path></svg></div><h4 class="text-xl font-semibold text-slate-50 mb-2">Execute & Ascend</h4><p class="text-slate-400 leading-relaxed">Follow your personalized protocol. Execute tasks, monitor progress, and watch your potential become reality.</p></div>
+                <div class="glass-card p-8 rounded-xl"><div class="flex items-center justify-center h-16 w-16 mx-auto mb-6"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="m9 12 2 2 4-4"></path></svg></div><h3 class="text-xl font-semibold text-slate-50 mb-2">1. Define Objective</h3><p class="text-slate-400 leading-relaxed">Input a single, ambitious long-term objective. Launch a venture, master a skill, run a marathon. Define your target.</p></div>
+                <div class="glass-card p-8 rounded-xl"><div class="flex items-center justify-center h-16 w-16 mx-auto mb-6"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></div><h3 class="text-xl font-semibold text-slate-50 mb-2">2. Generate Roadmap</h3><p class="text-slate-400 leading-relaxed">Our AI analyzes your objective and generates a structured, mission-critical roadmap broken into tactical phases.</p></div>
+                <div class="glass-card p-8 rounded-xl"><div class="flex items-center justify-center h-16 w-16 mx-auto mb-6"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"></path><path d="m22 2-7 20-4-9-9-4 20-7z"></path></svg></div><h3 class="text-xl font-semibold text-slate-50 mb-2">3. Execute & Ascend</h3><p class="text-slate-400 leading-relaxed">Follow your personalized protocol. Execute tasks, monitor progress, and watch your potential become reality.</p></div>
+            </div>
+        </section>
+
+        <!-- AI Section -->
+        <section class="container mx-auto px-6 mt-28 md:mt-40 fade-in">
+            <div class="text-center mb-16 max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-50">The Intelligence Core</h2>
+                <p class="text-lg text-slate-400 mt-4">Our core is powered by a proprietary multi-model AI engine. We leverage a dynamic suite of best-in-class language models, ensuring your plans are crafted with unparalleled intelligence, creativity, and strategic depth.</p>
+            </div>
+        </section>
+
+        <!-- Social Proof Section -->
+        <section class="container mx-auto px-6 mt-28 md:mt-40 fade-in">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-50">What Our Beta Users Say</h2>
+                <p class="text-lg text-slate-400 mt-3">Real stories from ambitious individuals like you.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-xl"><div class="flex gap-1 mb-4"><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-slate-400 leading-relaxed mb-4">"Operator Uplift turned my vague idea into a concrete plan. I launched my startup in months!"</p><p class="text-slate-200 font-semibold">- Alex T., Entrepreneur</p></div>
+                <div class="glass-card p-8 rounded-xl"><div class="flex gap-1 mb-4"><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-slate-400 leading-relaxed mb-4">"The AI roadmap helped me master a new skill while balancing work. Highly recommend!"</p><p class="text-slate-200 font-semibold">- Sarah L., Professional</p></div>
+                <div class="glass-card p-8 rounded-xl"><div class="flex gap-1 mb-4"><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div><p class="text-slate-400 leading-relaxed mb-4">"From marathon training to a career switch, it's my go-to tool for big goals."</p><p class="text-slate-200 font-semibold">- Mike R., Athlete</p></div>
             </div>
         </section>
 
         <!-- FAQ Section -->
         <section class="container mx-auto px-6 mt-28 md:mt-40 fade-in">
             <div class="text-center mb-16">
-                <h3 class="text-3xl md:text-4xl font-bold text-slate-50">Frequently Asked Questions</h3>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-50">Frequently Asked Questions</h2>
             </div>
-            <div class="max-w-3xl mx-auto space-y-6">
-                <details class="glass-card p-6 rounded-lg group">
-                    <summary class="font-semibold text-lg text-slate-200 cursor-pointer list-none flex justify-between items-center">
-                        What problem does Operator Uplift solve?
+            <div class="max-w-3xl mx-auto space-y-6" id="faq-accordion">
+                <details class="glass-card rounded-lg group">
+                    <summary role="button" tabindex="0" class="font-semibold text-lg text-slate-200 cursor-pointer list-none flex justify-between items-center p-6">
+                        <span>What problem does Operator Uplift solve?</span>
                         <svg class="w-5 h-5 group-open:rotate-180 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
                     </summary>
-                    <div class="faq-answer mt-4">
-                        <p>Many ambitious individuals struggle to translate high-level goals (like "start a company" or "get in shape") into a concrete, daily plan. Operator Uplift acts as an AI-powered project manager for your life, breaking down massive ambitions into a clear sequence of actionable tasks, helping you overcome inertia and make consistent progress.</p>
-                    </div>
+                    <div class="faq-answer px-6 pb-6 text-left"><p>Many ambitious individuals struggle to translate high-level goals into a concrete, daily plan. Operator Uplift acts as an AI-powered project manager for your life, breaking down massive ambitions into a clear sequence of actionable tasks, helping you overcome inertia and make consistent progress.</p></div>
                 </details>
-                <details class="glass-card p-6 rounded-lg group">
-                    <summary class="font-semibold text-lg text-slate-200 cursor-pointer list-none flex justify-between items-center">
-                        Who is this for?
+                <details class="glass-card rounded-lg group">
+                    <summary role="button" tabindex="0" class="font-semibold text-lg text-slate-200 cursor-pointer list-none flex justify-between items-center p-6">
+                        <span>Who is this for?</span>
                         <svg class="w-5 h-5 group-open:rotate-180 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
                     </summary>
-                    <div class="faq-answer mt-4">
-                        <p>It's for entrepreneurs, creatives, students, athletes, and anyone who wants to apply a systematic, mission-oriented approach to their personal and professional goals. If you have a big objective but aren't sure where to start, Operator Uplift is designed for you.</p>
-                    </div>
+                    <div class="faq-answer px-6 pb-6 text-left"><p>It's for entrepreneurs, creatives, students, athletes, and anyone who wants to apply a systematic, mission-oriented approach to their personal and professional goals. If you have a big objective but aren't sure where to start, Operator Uplift is designed for you.</p></div>
                 </details>
-                <!-- UPDATE: Rephrased AI models FAQ -->
-                <details class="glass-card p-6 rounded-lg group">
-                    <summary class="font-semibold text-lg text-slate-200 cursor-pointer list-none flex justify-between items-center">
-                        What kind of AI does this use?
-                        <svg class="w-5 h-5 group-open:rotate-180 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+                <details class="glass-card rounded-lg group">
+                    <summary role="button" tabindex="0" class="font-semibold text-lg text-slate-200 cursor-pointer list-none flex justify-between items-center p-6">
+                        <span>What kind of AI does this use?</span>
+                         <svg class="w-5 h-5 group-open:rotate-180 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
                     </summary>
-                    <div class="faq-answer mt-4">
-                        <p>Operator Uplift is powered by a sophisticated AI engine that utilizes an ensemble of best-in-class language and reasoning models. This multi-model approach allows us to analyze goals from different perspectives, ensuring a robust, comprehensive, and highly-effective strategic plan tailored to your unique ambition.</p>
-                    </div>
+                    <div class="faq-answer px-6 pb-6 text-left"><p>Operator Uplift is powered by a sophisticated AI engine that utilizes an ensemble of best-in-class language and reasoning models. This multi-model approach allows us to analyze goals from different perspectives, ensuring a robust, comprehensive, and highly-effective strategic plan tailored to your unique ambition.</p></div>
                 </details>
-                <details class="glass-card p-6 rounded-lg group">
-                    <summary class="font-semibold text-lg text-slate-200 cursor-pointer list-none flex justify-between items-center">
-                        When do you expect to launch?
+                <details class="glass-card rounded-lg group">
+                    <summary role="button" tabindex="0" class="font-semibold text-lg text-slate-200 cursor-pointer list-none flex justify-between items-center p-6">
+                        <span>When do you expect to launch?</span>
                         <svg class="w-5 h-5 group-open:rotate-180 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
                     </summary>
-                    <div class="faq-answer mt-4">
-                        <p>We are working hard to build a robust and effective tool. Join the waitlist to be the first to know about our launch timeline, beta access opportunities, and other important updates.</p>
-                    </div>
+                    <div class="faq-answer px-6 pb-6 text-left"><p>We are working hard to build a robust and effective tool. Join the waitlist to be the first to know about our launch timeline, beta access opportunities, and other important updates.</p></div>
                 </details>
             </div>
         </section>
 
+        <!-- Final CTA Section -->
+        <section class="container mx-auto px-6 mt-28 md:mt-40 mb-20 fade-in text-center">
+            <div class="glass-card p-12 rounded-2xl max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-5xl font-bold text-slate-50 mb-6">Your Future Self is Waiting</h2>
+                <a href="#waitlist" id="claim-spot-btn-footer" class="inline-block bg-[var(--accent-color)] text-black font-bold px-8 py-4 rounded-lg hover:bg-[var(--accent-hover)] transition-all duration-300 accent-glow-button text-lg">Claim Your Spot Now</a>
+            </div>
+        </section>
+
         <!-- Footer -->
-        <footer class="container mx-auto px-6 text-center mt-28 md:mt-40 pt-10 border-t border-zinc-800 fade-in">
+        <footer class="container mx-auto px-6 text-center py-10 border-t border-zinc-800 fade-in">
             <div class="flex flex-col sm:flex-row justify-between items-center gap-6">
                 <p class="text-slate-500">&copy; 2025 Operator Uplift. All rights reserved.</p>
-                <div class="flex flex-wrap justify-center gap-x-6 gap-y-4">
+                <div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-4">
+                    <a href="mailto:operatoruplift@gmail.com" class="text-slate-500 hover:text-[var(--accent-color)] transition-colors">Contact</a>
+                    <a href="https://twitter.com/OperatorUplift" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-[var(--accent-color)] transition-colors" aria-label="Operator Uplift on X/Twitter">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                    </a>
+                    <a href="https://www.facebook.com/operatoruplift" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-[var(--accent-color)] transition-colors" aria-label="Operator Uplift on Facebook">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v7.028C18.343 21.128 22 16.991 22 12z"></path></svg>
+                    </a>
+                    <a href="https://instagram.com/operatoruplift" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-[var(--accent-color)] transition-colors" aria-label="Operator Uplift on Instagram">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.012-3.584.07-4.85C2.25 3.854 3.784 2.31 7.031 2.163 8.297 2.105 8.677 2.093 12 2.093m0-2.093c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98C15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"></path></svg>
+                    </a>
+                    <a href="https://linkedin.com/company/operatoruplift" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-[var(--accent-color)] transition-colors" aria-label="Operator Uplift on LinkedIn">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                    </a>
                     <a href="#terms" class="legal-link text-slate-500 hover:text-[var(--accent-color)] transition-colors">Terms</a>
                     <a href="#privacy" class="legal-link text-slate-500 hover:text-[var(--accent-color)] transition-colors">Privacy</a>
                     <a href="#cookies" class="legal-link text-slate-500 hover:text-[var(--accent-color)] transition-colors">Cookies</a>
                     <a href="#" id="manage-cookies" class="text-slate-500 hover:text-[var(--accent-color)] transition-colors">Manage Cookies</a>
                 </div>
             </div>
-             <!-- ADDITION: Animation Controls -->
-            <div class="mt-8 pt-6 border-t border-zinc-800/50 flex flex-col sm:flex-row justify-center items-center gap-x-8 gap-y-4 text-sm text-slate-400">
-                <div class="flex items-center gap-3">
-                    <span>Background Particles</span>
-                    <label class="toggle-switch">
-                        <input type="checkbox" id="toggle-particles" checked>
-                        <span class="slider"></span>
-                    </label>
-                </div>
-                <div class="flex items-center gap-3">
-                    <span>Cube Rotation</span>
-                    <label class="toggle-switch">
-                        <input type="checkbox" id="toggle-cube-rotation" checked>
-                        <span class="slider"></span>
-                    </label>
-                </div>
+             <div class="mt-8 pt-6 border-t border-zinc-800/50 flex flex-col sm:flex-row justify-center items-center gap-x-8 gap-y-4 text-sm text-slate-400">
+                <div class="flex items-center gap-3"><label for="toggle-particles" class="cursor-pointer">Background Particles</label><label class="toggle-switch"><input type="checkbox" id="toggle-particles" checked><span class="slider"></span></label></div>
+                <div class="flex items-center gap-3"><label for="toggle-cube-rotation" class="cursor-pointer">Cube Rotation</label><label class="toggle-switch"><input type="checkbox" id="toggle-cube-rotation" checked><span class="slider"></span></label></div>
             </div>
         </footer>
     </div>
 
     <!-- Legal Pages & Success Modal -->
-    <!-- UPDATE: Added 'is-scrollable' class to legal pages -->
-    <div id="terms" class="overlay-page legal-page is-scrollable">
-        <div class="legal-content container mx-auto max-w-4xl relative">
-            <button class="close-overlay-btn fixed top-8 right-8 text-white text-4xl">&times;</button>
-            <h2>Terms of Service</h2>
-            <p>Last updated: July 27, 2025</p>
-            <p>Welcome to Operator Uplift. These Terms of Service ("Terms") govern your access to and use of the Operator Uplift website and any services offered (collectively, the "Service"). By accessing or using the Service, you agree to be bound by these Terms.</p>
-            <h3>1. The Service</h3>
-            <p>Operator Uplift is a pre-launch project. The Service is provided on an "as is" and "as available" basis. We provide information about our upcoming product and collect email addresses for a waitlist. We do not make any warranties about the completeness, reliability, or accuracy of this information. The features and functionality of the final product are subject to change.</p>
-            <h3>2. Waitlist</h3>
-            <p>By submitting your email address to our waitlist, you consent to receive email communications from us regarding updates, news, and marketing for Operator Uplift. You can opt-out of these communications at any time by following the unsubscribe link in the emails.</p>
-            <h3>3. User Conduct</h3>
-            <p>You agree not to use the Service for any unlawful purpose or to engage in any activity that would disrupt the Service or its servers and networks.</p>
-            <h3>4. Intellectual Property</h3>
-            <p>The Service and all of its original content, including text, graphics, logos, and software, are the property of the creators of Operator Uplift and are protected by copyright and other intellectual property laws. You may not use our trademarks or content without our prior written consent.</p>
-            <h3>5. Limitation of Liability</h3>
-            <p>To the fullest extent permitted by applicable law, Operator Uplift shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Service.</p>
-            <h3>6. Changes to Terms</h3>
-            <p>We reserve the right to modify these Terms at any time. We will notify you of any changes by posting the new Terms on this page. Your continued use of the Service after any such changes constitutes your acceptance of the new Terms.</p>
-            <h3>7. Contact Us</h3>
-            <p>If you have any questions about these Terms, please contact us at <a href="mailto:operatoruplift@gmail.com">operatoruplift@gmail.com</a>.</p>
-        </div>
-    </div>
-
-    <div id="privacy" class="overlay-page legal-page is-scrollable">
-        <div class="legal-content container mx-auto max-w-4xl relative">
-            <button class="close-overlay-btn fixed top-8 right-8 text-white text-4xl">&times;</button>
-            <h2>Privacy Policy</h2>
-            <p>Last updated: July 27, 2025</p>
-            <p>This Privacy Policy describes how Operator Uplift ("we," "us," or "our") collects, uses, and discloses your information when you use our website (the "Service").</p>
-            <h3>1. Information We Collect</h3>
-            <p>We collect information you provide directly to us. The only personal information we currently collect is your email address when you voluntarily sign up for our waitlist.</p>
-            <h3>2. How We Use Your Information</h3>
-            <p>We use the email address you provide to:</p>
-            <ul>
-                <li>Send you updates, news, and other information related to Operator Uplift.</li>
-                <li>Notify you when the product is ready for launch or beta testing.</li>
-                <li>Respond to your comments or inquiries if you contact us.</li>
-            </ul>
-            <p>Your email address is processed through our form provider, Netlify, which has its own privacy policy and security measures.</p>
-            <h3>3. Data Sharing and Disclosure</h3>
-            <p>We do not sell, trade, or rent your personal information to others. We may share your information with third-party service providers (like Netlify) only to the extent necessary for them to provide their services to us. We will not share your information for any other purpose without your consent, unless required by law.</p>
-            <h3>4. Data Security</h3>
-            <p>The security of your data is important to us. We rely on the security infrastructure of our service providers to protect your information. However, no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security.</p>
-            <h3>5. Your Rights</h3>
-            <p>You have the right to opt-out of our email communications at any time by clicking the "unsubscribe" link provided in every email. You may also contact us to request access to, correction of, or deletion of your personal information.</p>
-            <h3>6. Changes to This Policy</h3>
-            <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes.</p>
-        </div>
-    </div>
-
-    <div id="cookies" class="overlay-page legal-page is-scrollable">
-        <div class="legal-content container mx-auto max-w-4xl relative">
-            <button class="close-overlay-btn fixed top-8 right-8 text-white text-4xl">&times;</button>
-            <h2>Cookie Policy</h2>
-            <p>Last updated: July 27, 2025</p>
-            <p>This Cookie Policy explains what cookies are and how we use them on the Operator Uplift website.</p>
-            <h3>What Are Cookies?</h3>
-            <p>Cookies are small text files that are placed on your computer or mobile device when you visit a website. They are widely used to make websites work, or work more efficiently, as well as to provide information to the owners of the site.</p>
-            <h3>How We Use Cookies</h3>
-            <p>We use cookies for a very limited and specific purpose:</p>
-            <ul>
-                <li><strong>Essential Cookies:</strong> We use one essential cookie to remember your choice regarding our cookie consent banner. This is a functional cookie that allows us to know whether you have accepted or declined our cookie policy, so we don't have to ask you on every visit.</li>
-            </ul>
-            <p>At this time, we do not use any cookies for analytics, advertising, or tracking purposes.</p>
-            <h3>Your Choices Regarding Cookies</h3>
-            <p>When you first visit our site, you are presented with a banner allowing you to accept or decline our use of cookies. If you decline, the functional cookie to remember your choice will still be set. Most web browsers allow some control of most cookies through the browser settings. To find out more about cookies, including how to see what cookies have been set, visit <a href="https://www.aboutcookies.org" target="_blank" rel="noopener noreferrer">www.aboutcookies.org</a> or <a href="https://www.allaboutcookies.org" target="_blank" rel="noopener noreferrer">www.allaboutcookies.org</a>.</p>
-            <h3>Changes to This Cookie Policy</h3>
-            <p>We may update this Cookie Policy in the future if we introduce new cookies or change how we use them. Any changes will be posted on this page.</p>
-        </div>
-    </div>
-    
-    <div id="success-modal" class="overlay-page">
-        <div class="glass-card p-8 rounded-xl text-center max-w-sm w-full relative">
-            <button class="close-overlay-btn absolute top-2 right-4 text-slate-400 text-3xl">&times;</button>
-            <div class="flex items-center justify-center h-16 w-16 mx-auto mb-6 bg-green-500/10 rounded-full border border-green-500/20">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-            </div>
-            <h2 class="text-2xl font-bold text-slate-50 mb-2">Request Received!</h2>
-            <p class="text-slate-400">Thank you for joining the waitlist. We'll be in touch soon.</p>
-        </div>
-    </div>
+    <div id="terms" class="overlay-page is-scrollable"><div class="modal-content-wrapper relative max-w-4xl w-full"><button aria-label="Close Terms of Service" class="close-overlay-btn absolute top-4 right-6 text-slate-400 text-4xl hover:text-white">&times;</button><div class="legal-content"><h2>Terms of Service</h2><p>Last updated: July 27, 2025</p><p>Welcome to Operator Uplift. These Terms of Service ("Terms") govern your access to and use of the Operator Uplift website and any services offered (collectively, the "Service"). By accessing or using the Service, you agree to be bound by these Terms.</p><h3>1. The Service</h3><p>Operator Uplift is a pre-launch project. The Service is provided on an "as is" and "as available" basis. We provide information about our upcoming product and collect email addresses for a waitlist. We do not make any warranties about the completeness, reliability, or accuracy of this information. The features and functionality of the final product are subject to change.</p><h3>2. Waitlist</h3><p>By submitting your email address to our waitlist, you consent to receive email communications from us regarding updates, news, and marketing for Operator Uplift. You can opt-out of these communications at any time by following the unsubscribe link in the emails.</p><h3>3. User Conduct</h3><p>You agree not to use the Service for any unlawful purpose or to engage in any activity that would disrupt the Service or its servers and networks.</p><h3>4. Intellectual Property</h3><p>The Service and all of its original content, including text, graphics, logos, and software, are the property of the creators of Operator Uplift and are protected by copyright and other intellectual property laws. You may not use our trademarks or content without our prior written consent.</p><h3>5. Limitation of Liability</h3><p>To the fullest extent permitted by applicable law, Operator Uplift shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Service.</p><h3>6. Changes to Terms</h3><p>We reserve the right to modify these Terms at any time. We will notify you of any changes by posting the new Terms on this page. Your continued use of the Service after any such changes constitutes your acceptance of the new Terms.</p><h3>7. Contact Us</h3><p>If you have any questions about these Terms, please contact us at <a href="mailto:operatoruplift@gmail.com">operatoruplift@gmail.com</a>.</p></div></div></div>
+    <div id="privacy" class="overlay-page is-scrollable"><div class="modal-content-wrapper relative max-w-4xl w-full"><button aria-label="Close Privacy Policy" class="close-overlay-btn absolute top-4 right-6 text-slate-400 text-4xl hover:text-white">&times;</button><div class="legal-content"><h2>Privacy Policy</h2><p>Last updated: July 27, 2025</p><p>This Privacy Policy describes how Operator Uplift ("we," "us," or "our") collects, uses, and discloses your information when you use our website (the "Service").</p><h3>1. Information We Collect</h3><p>We collect information you provide directly to us. The only personal information we currently collect is your email address when you voluntarily sign up for our waitlist.</p><h3>2. How We Use Your Information</h3><p>We use the email address you provide to:</p><ul><li>Send you updates, news, and other information related to Operator Uplift.</li><li>Notify you when the product is ready for launch or beta testing.</li><li>Respond to your comments or inquiries if you contact us.</li></ul><p>Your email address is processed through our form provider, Netlify, which has its own privacy policy and security measures.</p><h3>3. Data Sharing and Disclosure</h3><p>We do not sell, trade, or rent your personal information to others. We may share your information with third-party service providers (like Netlify) only to the extent necessary for them to provide their services to us. We will not share your information for any other purpose without your consent, unless required by law.</p><h3>4. Data Security</h3><p>The security of your data is important to us. We rely on the security infrastructure of our service providers to protect your information. However, no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security.</p><h3>5. Your Rights</h3><p>You have the right to opt-out of our email communications at any time by clicking the "unsubscribe" link provided in every email. You may also contact us to request access to, correction of, or deletion of your personal information at <a href="mailto:operatoruplift@gmail.com">operatoruplift@gmail.com</a>.</p><h3>6. Changes to This Policy</h3><p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes.</p></div></div></div>
+    <div id="cookies" class="overlay-page is-scrollable"><div class="modal-content-wrapper relative max-w-4xl w-full"><button aria-label="Close Cookie Policy" class="close-overlay-btn absolute top-4 right-6 text-slate-400 text-4xl hover:text-white">&times;</button><div class="legal-content"><h2>Cookie Policy</h2><p>Last updated: July 27, 2025</p><p>This Cookie Policy explains what cookies are and how we use them on the Operator Uplift website.</p><h3>What Are Cookies?</h3><p>Cookies are small text files that are placed on your computer or mobile device when you visit a website. They are widely used to make websites work, or work more efficiently, as well as to provide information to the owners of the site.</p><h3>How We Use Cookies</h3><p>We use cookies for a very limited and specific purpose:</p><ul><li><strong>Essential Cookies:</strong> We use one essential cookie to remember your choice regarding our cookie consent banner. This is a functional cookie that allows us to know whether you have accepted or declined our cookie policy, so we don't have to ask you on every visit.</li></ul><p>At this time, we do not use any cookies for analytics, advertising, or tracking purposes.</p><h3>Your Choices Regarding Cookies</h3><p>When you first visit our site, you are presented with a banner allowing you to accept or decline our use of cookies. If you decline, the functional cookie to remember your choice will still be set. Most web browsers allow some control of most cookies through the browser settings. To find out more about cookies, including how to see what cookies have been set, visit <a href="https://www.aboutcookies.org" target="_blank" rel="noopener noreferrer">www.aboutcookies.org</a> or <a href="https://www.allaboutcookies.org" target="_blank" rel="noopener noreferrer">www.allaboutcookies.org</a>.</p><h3>Changes to This Cookie Policy</h3><p>We may update this Cookie Policy in the future if we introduce new cookies or change how we use them. Any changes will be posted on this page.</p></div></div></div>
+    <div id="success-modal" class="overlay-page"><div class="modal-content-wrapper text-center max-w-sm w-full relative"><button aria-label="Close Success Message" class="close-overlay-btn absolute top-2 right-4 text-slate-400 text-3xl hover:text-white">&times;</button><h2 class="text-2xl font-bold text-slate-50 mb-2">Request Received!</h2><p class="text-slate-400">Thank you for joining the waitlist. We'll be in touch soon.</p></div></div>
 
     <!-- Cookie Consent Banner -->
-    <div id="cookie-consent-banner" class="fixed bottom-0 left-0 right-0 p-4 z-50 hidden">
-        <div class="glass-card container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-lg">
-            <p class="text-sm text-slate-300">We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies. <a href="#cookies" class="legal-link text-[var(--accent-color)] hover:underline">Learn more</a>.</p>
-            <div class="flex gap-3 flex-shrink-0">
-                <button id="cookie-decline" class="px-5 py-2 rounded-lg text-sm font-semibold text-slate-300 hover:bg-zinc-700 transition-colors">Decline</button>
-                <button id="cookie-accept" class="px-5 py-2 rounded-lg text-sm font-semibold bg-[var(--accent-color)] text-black hover:bg-white transition-colors">Accept</button>
-            </div>
-        </div>
-    </div>
+    <div id="cookie-consent-banner" class="fixed bottom-0 left-0 right-0 p-4 z-50 hidden"><div class="glass-card container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-lg"><p class="text-sm text-slate-300">We use essential cookies to make our site work. For more details, see our <a href="#cookies" class="legal-link text-[var(--accent-color)] hover:underline">Cookie Policy</a> and <a href="#privacy" class="legal-link text-[var(--accent-color)] hover:underline">Privacy Policy</a>.</p><div class="flex gap-3 flex-shrink-0"><button id="cookie-decline" class="px-5 py-2 rounded-lg text-sm font-semibold text-slate-300 hover:bg-zinc-700 transition-colors">Decline</button><button id="cookie-accept" class="px-5 py-2 rounded-lg text-sm font-semibold bg-[var(--accent-color)] text-black hover:bg-[var(--accent-hover)] transition-colors">Accept</button></div></div></div>
 
-    <!-- tsParticles library -->
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js" defer></script>
     
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- Loading Screen ---
-            setTimeout(() => {
-                const loadingScreen = document.getElementById('loading-screen');
-                if (loadingScreen) {
-                    loadingScreen.style.opacity = '0';
-                    setTimeout(() => loadingScreen.style.display = 'none', 500);
-                }
-            }, 500);
-
-            // --- Custom Cursor ---
-            const cursor = document.querySelector('.custom-cursor');
-            if (cursor) {
-                window.addEventListener('mousemove', e => {
-                    cursor.style.left = e.clientX + 'px';
-                    cursor.style.top = e.clientY + 'px';
-                });
+    // For production, consider using a build tool (e.g., Vite, Webpack) to minify this script.
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- Loading Screen ---
+        setTimeout(() => {
+            const loadingScreen = document.getElementById('loading-screen');
+            if (loadingScreen) {
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => loadingScreen.style.display = 'none', 500);
             }
+        }, 500);
 
-            // --- tsParticles Initialization ---
-            let particlesInstance;
+        // --- Custom Cursor ---
+        const cursor = document.querySelector('.custom-cursor');
+        if (cursor && window.matchMedia("(hover: hover)").matches) {
+            window.addEventListener('mousemove', e => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+        }
+
+        // --- tsParticles Initialization ---
+        let particlesInstance;
+        if (typeof tsParticles !== 'undefined') {
             tsParticles.load("tsparticles", {
-                fpsLimit: 120,
-                background: { color: { value: "#0a0a0a" } },
-                particles: {
-                    number: { value: 50, density: { enable: true, value_area: 800 } },
-                    color: { value: "#ffffff" },
-                    shape: { type: "circle" },
-                    opacity: { value: 0.5, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.1, sync: false } },
-                    size: { value: 1.5, random: true },
-                    move: { enable: true, speed: 0.5, direction: "none", random: true, straight: false, out_mode: "out" }
-                },
-                interactivity: {
-                    detect_on: "canvas",
-                    events: { onhover: { enable: true, mode: "grab" }, resize: true },
-                    modes: {
-                        grab: { distance: 140, line_linked: { opacity: 1, color: "var(--accent-color)" } },
-                    }
-                },
+                fpsLimit: 60,
+                particles: { number: { value: 30 }, color: { value: "#ffffff" }, shape: { type: "circle" }, opacity: { value: 0.4, random: true }, size: { value: 1.5, random: true }, move: { enable: true, speed: 0.5, random: true } },
+                interactivity: { events: { onhover: { enable: true, mode: "grab" }, resize: true }, modes: { grab: { distance: 140, line_linked: { opacity: 1, color: "var(--accent-color)" } } } },
                 detectRetina: true
-            }).then(container => {
-                particlesInstance = container;
+            }).then(container => { particlesInstance = container; });
+        }
+
+        // --- 3D Cube Logic with Inertia ---
+        const cube = document.getElementById('cube');
+        const scene = document.querySelector('.scene');
+        let isDragging = false, previousX = 0, previousY = 0, rotationX = 0, rotationY = 0, velocityX = 0, velocityY = 0;
+        const friction = 0.98;
+        let autoRotateEnabled = true;
+        const autoRotateSpeed = 0.1;
+
+        const startDrag = (x, y) => { isDragging = true; previousX = x; previousY = y; velocityX = 0; velocityY = 0; };
+        const drag = (x, y) => { if (isDragging) { const deltaX = x - previousX; const deltaY = y - previousY; rotationY += deltaX * 0.5; rotationX -= deltaY * 0.5; velocityY = deltaX * 0.5; velocityX = -deltaY * 0.5; previousX = x; previousY = y; } };
+        const endDrag = () => { isDragging = false; };
+
+        if (scene) {
+            scene.addEventListener('mousedown', e => startDrag(e.clientX, e.clientY));
+            window.addEventListener('mousemove', e => drag(e.clientX, e.clientY));
+            window.addEventListener('mouseup', endDrag);
+            window.addEventListener('mouseleave', endDrag);
+            scene.addEventListener('touchstart', e => { e.preventDefault(); startDrag(e.touches[0].clientX, e.touches[0].clientY); }, { passive: false });
+            window.addEventListener('touchmove', e => { if (isDragging) { e.preventDefault(); drag(e.touches[0].clientX, e.touches[0].clientY); } }, { passive: false });
+            window.addEventListener('touchend', endDrag);
+        }
+
+        function animateCube() {
+            if (!isDragging) {
+                if (Math.abs(velocityX) > 0.01 || Math.abs(velocityY) > 0.01) {
+                    velocityX *= friction; velocityY *= friction; rotationX += velocityX; rotationY += velocityY;
+                } else if (autoRotateEnabled) {
+                    rotationY += autoRotateSpeed;
+                }
+            }
+            if(cube) { cube.style.transform = `translateZ(-100px) rotateX(${rotationX}deg) rotateY(${rotationY}deg)`; }
+            requestAnimationFrame(animateCube);
+        }
+        animateCube();
+
+        // --- Fade-in Animation on Scroll ---
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOnScroll = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
             });
-
-            // --- Interactive 3D Cube Logic (Mobile & Touch Friendly) ---
-            const cube = document.getElementById('cube');
-            const scene = document.querySelector('.scene');
-            let isDragging = false;
-            let previousX = 0;
-            let previousY = 0;
-            let rotationX = 0;
-            let rotationY = 0;
-            let velocityX = 0;
-            let velocityY = 0;
-            const friction = 0.98;
-            let autoRotateEnabled = true;
-            const autoRotateSpeed = 0.1;
-
-            const startDrag = (x, y) => {
-                isDragging = true;
-                previousX = x;
-                previousY = y;
-                velocityX = 0;
-                velocityY = 0;
-            };
-
-            const drag = (x, y) => {
-                if (isDragging) {
-                    const deltaX = x - previousX;
-                    const deltaY = y - previousY;
-                    rotationY += deltaX * 0.5;
-                    rotationX -= deltaY * 0.5;
-                    velocityY = deltaX * 0.5;
-                    velocityX = -deltaY * 0.5;
-                    previousX = x;
-                    previousY = y;
-                }
-            };
-
-            const endDrag = () => { isDragging = false; };
-
-            if (scene) {
-                scene.addEventListener('mousedown', (e) => startDrag(e.clientX, e.clientY));
-                window.addEventListener('mousemove', (e) => drag(e.clientX, e.clientY));
-                window.addEventListener('mouseup', endDrag);
-                window.addEventListener('mouseleave', endDrag);
-                scene.addEventListener('touchstart', (e) => { e.preventDefault(); startDrag(e.touches[0].clientX, e.touches[0].clientY); }, { passive: false });
-                window.addEventListener('touchmove', (e) => { if (isDragging) { e.preventDefault(); drag(e.touches[0].clientX, e.touches[0].clientY); } }, { passive: false });
-                window.addEventListener('touchend', endDrag);
-                window.addEventListener('touchcancel', endDrag);
-            }
-
-            function animateCube() {
-                if (!isDragging) {
-                    if (Math.abs(velocityX) > 0.01 || Math.abs(velocityY) > 0.01) {
-                        velocityX *= friction;
-                        velocityY *= friction;
-                        rotationX += velocityX;
-                        rotationY += velocityY;
-                    } else if (autoRotateEnabled) {
-                        rotationY += autoRotateSpeed;
-                    }
-                }
-                if(cube) {
-                    cube.style.transform = `translateZ(-100px) rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
-                }
-                requestAnimationFrame(animateCube);
-            }
-            animateCube();
-
-            // --- Fade-in Animation on Scroll ---
-            const faders = document.querySelectorAll('.fade-in');
-            const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
-            const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, appearOptions);
-            faders.forEach(fader => { appearOnScroll.observe(fader); });
-
-            // --- Netlify Form Submission (Improved) ---
-            const waitlistForm = document.getElementById('waitlist-form');
-            const submitBtn = document.getElementById('waitlist-submit-btn');
-            const btnText = submitBtn?.querySelector('.button-text');
-            const spinner = submitBtn?.querySelector('.spinner');
-            const errorMessage = document.getElementById('error-message');
+        }, { threshold: 0.2 });
+        faders.forEach(fader => appearOnScroll.observe(fader));
+        
+        // --- Form Submission with reCAPTCHA ---
+        const waitlistForm = document.getElementById('waitlist-form');
+        waitlistForm?.addEventListener('submit', event => {
+            event.preventDefault();
             const emailInput = document.getElementById('email-input');
+            const formMessage = document.getElementById('form-message');
 
-            waitlistForm?.addEventListener('submit', event => {
-                event.preventDefault();
-                if (!emailInput.value || !emailInput.checkValidity()) {
-                    errorMessage.textContent = 'Please provide a valid email address.';
-                    errorMessage.classList.remove('hidden');
-                    return;
-                }
-                errorMessage.classList.add('hidden');
-                submitBtn.disabled = true;
-                btnText.classList.add('hidden');
-                spinner.classList.remove('hidden');
-
-                const formData = new FormData(waitlistForm);
-                const body = new URLSearchParams(formData).toString();
-                fetch('/', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: body
-                })
-                .then(() => {
-                    showPage('success-modal');
-                    waitlistForm.reset();
-                })
-                .catch(error => {
-                    errorMessage.textContent = 'Submission failed. Please try again later.';
-                    errorMessage.classList.remove('hidden');
-                    console.error('Form submission error:', error);
-                })
-                .finally(() => {
-                    submitBtn.disabled = false;
-                    btnText.classList.remove('hidden');
-                    spinner.classList.add('hidden');
-                });
-            });
-
-            // --- Join Waitlist Button Logic ---
-            const joinWaitlistBtn = document.getElementById('join-waitlist-btn');
-            joinWaitlistBtn?.addEventListener('click', function(e) {
-                e.preventDefault();
-                const waitlistSection = document.getElementById('waitlist');
-                waitlistSection?.scrollIntoView({ behavior: 'smooth' });
-                emailInput?.focus({ preventScroll: true });
-            });
-
-            // --- Overlay/Modal Page Logic ---
-            const legalLinks = document.querySelectorAll('.legal-link');
-            const overlayPages = document.querySelectorAll('.overlay-page');
-            const closeButtons = document.querySelectorAll('.close-overlay-btn');
-
-            function showPage(pageId) {
-                const page = document.getElementById(pageId);
-                if (page) {
-                    page.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                }
+            if (!emailInput.value || !emailInput.checkValidity()) {
+                formMessage.textContent = 'Please provide a valid email address.';
+                formMessage.className = 'mt-4 font-medium h-6 text-red-400';
+                return;
             }
 
-            function hideAllPages() {
-                overlayPages.forEach(page => page.classList.remove('active'));
-                document.body.style.overflow = '';
-            }
-
-            legalLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const pageId = link.getAttribute('href').substring(1);
-                    showPage(pageId);
-                });
-            });
-
-            closeButtons.forEach(button => {
-                button.addEventListener('click', hideAllPages);
-            });
-
-            // --- Background Music Logic ---
-            const soundToggle = document.getElementById('sound-toggle');
-            const soundOnIcon = document.getElementById('sound-on-icon');
-            const soundOffIcon = document.getElementById('sound-off-icon');
-            const music = document.getElementById('background-music');
-            let musicStarted = false;
+            const submitBtn = document.getElementById('waitlist-submit-btn');
+            const btnText = submitBtn.querySelector('.button-text');
+            const spinner = submitBtn.querySelector('.spinner');
             
-            if(music) music.volume = 0.1;
+            formMessage.textContent = '';
+            submitBtn.disabled = true;
+            btnText.classList.add('hidden');
+            spinner.classList.remove('hidden');
 
-            soundToggle?.addEventListener('click', () => {
-                if (!musicStarted) {
-                    music?.play().catch(e => console.log("Audio play was prevented by browser."));
-                    musicStarted = true;
-                }
-                music.muted = !music.muted;
-                soundOnIcon?.classList.toggle('hidden', music.muted);
-                soundOffIcon?.classList.toggle('hidden', !music.muted);
-            });
+            grecaptcha.ready(function() {
+                grecaptcha.execute('6LelQ5ErAAAAABRxSDOpd1UsqfZPp4sqXVIQQZgV', {action: 'submit'}).then(function(token) {
+                    const formData = new FormData(waitlistForm);
+                    formData.append('g-recaptcha-response', token);
 
-            // --- Cookie Consent Logic ---
-            const cookieBanner = document.getElementById('cookie-consent-banner');
-            const acceptBtn = document.getElementById('cookie-accept');
-            const declineBtn = document.getElementById('cookie-decline');
-            const manageCookiesLink = document.getElementById('manage-cookies');
+                    // Note: For a serverless function setup, you would fetch your own endpoint.
+                    // For Netlify Forms, we can add the token to a hidden input and submit.
+                    const hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = 'g-recaptcha-response';
+                    hiddenInput.value = token;
+                    waitlistForm.appendChild(hiddenInput);
 
-            if (!localStorage.getItem('cookie_consent_status')) {
-                cookieBanner?.classList.remove('hidden');
-            }
+                    const netlifyFormData = new URLSearchParams(new FormData(waitlistForm));
+                    netlifyFormData.append('form-name', 'waitlist');
 
-            acceptBtn?.addEventListener('click', () => {
-                localStorage.setItem('cookie_consent_status', 'granted');
-                cookieBanner?.classList.add('hidden');
-            });
 
-            declineBtn?.addEventListener('click', () => {
-                localStorage.setItem('cookie_consent_status', 'denied');
-                cookieBanner?.classList.add('hidden');
-            });
-
-            manageCookiesLink?.addEventListener('click', (e) => {
-                e.preventDefault();
-                localStorage.removeItem('cookie_consent_status');
-                cookieBanner?.classList.remove('hidden');
-            });
-
-            // --- Animation Controls Logic ---
-            const toggleParticles = document.getElementById('toggle-particles');
-            toggleParticles?.addEventListener('change', (e) => {
-                if (e.target.checked) {
-                    particlesInstance?.play();
-                } else {
-                    particlesInstance?.pause();
-                }
-            });
-
-            const toggleCubeRotation = document.getElementById('toggle-cube-rotation');
-            toggleCubeRotation?.addEventListener('change', (e) => {
-                autoRotateEnabled = e.target.checked;
+                    fetch('/', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: netlifyFormData.toString()
+                    })
+                    .then(() => {
+                        showPage('success-modal');
+                        formMessage.textContent = 'Success! We\'ll be in touch soon.';
+                        formMessage.className = 'mt-4 font-medium h-6 text-green-400';
+                        if (typeof gtag === 'function') {
+                            gtag('event', 'join_waitlist', { 'method': 'email' });
+                        }
+                        setTimeout(() => { formMessage.textContent = ''; }, 5000);
+                        waitlistForm.reset();
+                    })
+                    .catch(error => { 
+                        formMessage.textContent = 'Submission failed. Please try again.'; 
+                        formMessage.className = 'mt-4 font-medium h-6 text-red-400'; 
+                        console.error('Form submission error:', error);
+                        setTimeout(() => { formMessage.textContent = ''; }, 5000);
+                    })
+                    .finally(() => {
+                        submitBtn.disabled = false;
+                        btnText.classList.remove('hidden');
+                        spinner.classList.add('hidden');
+                        waitlistForm.removeChild(hiddenInput);
+                    });
+                });
             });
         });
+
+
+        // --- Scroll-to-Waitlist & Modal Logic ---
+        const legalLinks = document.querySelectorAll('.legal-link'), overlayPages = document.querySelectorAll('.overlay-page'), closeButtons = document.querySelectorAll('.close-overlay-btn');
+        const showPage = (pageId) => { const page = document.getElementById(pageId); if (page) { page.classList.add('active'); document.body.style.overflow = 'hidden'; } };
+        const hideAllPages = () => { overlayPages.forEach(page => page.classList.remove('active')); document.body.style.overflow = ''; };
+        const scrollToWaitlist = (e, label) => { 
+            e.preventDefault(); 
+            document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+            document.getElementById('email-input')?.focus({ preventScroll: true }); 
+            if (typeof gtag === 'function') {
+                gtag('event', 'click', { 'category': 'CTA', 'label': label });
+            }
+        };
+        
+        document.getElementById('join-waitlist-btn-header')?.addEventListener('click', (e) => scrollToWaitlist(e, 'Header Join'));
+        document.getElementById('claim-spot-btn-footer')?.addEventListener('click', (e) => scrollToWaitlist(e, 'Footer CTA'));
+        document.getElementById('header-logo-link')?.addEventListener('click', (e) => scrollToWaitlist(e, 'Header Logo'));
+        legalLinks.forEach(link => link.addEventListener('click', e => { e.preventDefault(); showPage(link.getAttribute('href').substring(1)); }));
+        closeButtons.forEach(button => button.addEventListener('click', hideAllPages));
+        overlayPages.forEach(page => page.addEventListener('click', e => { if (e.target === page) { hideAllPages(); } }));
+        window.addEventListener('keydown', e => { if (e.key === 'Escape') hideAllPages(); });
+
+        // --- Background Music Logic (iOS compatible) ---
+        const soundToggle = document.getElementById('sound-toggle'), soundOnIcon = document.getElementById('sound-on-icon'), soundOffIcon = document.getElementById('sound-off-icon'), music = document.getElementById('background-music');
+        let musicStarted = false;
+        if(music) music.volume = 0.1;
+        soundToggle?.addEventListener('click', () => {
+            if (!musicStarted) { music?.play().catch(e => console.log("Audio play was prevented by browser.")); musicStarted = true; }
+            music.muted = !music.muted;
+            soundOnIcon?.classList.toggle('hidden', music.muted);
+            soundOffIcon?.classList.toggle('hidden', !music.muted);
+            if (typeof gtag === 'function') {
+                gtag('event', 'toggle_sound', { 'event_category': 'Engagement', 'event_label': music.muted ? 'off' : 'on' });
+            }
+        });
+
+        // --- Cookie Consent Logic ---
+        const cookieBanner = document.getElementById('cookie-consent-banner'), acceptBtn = document.getElementById('cookie-accept'), declineBtn = document.getElementById('cookie-decline'), manageCookiesLink = document.getElementById('manage-cookies');
+        if (!localStorage.getItem('cookie_consent_status')) { cookieBanner?.classList.remove('hidden'); }
+        acceptBtn?.addEventListener('click', () => { localStorage.setItem('cookie_consent_status', 'granted'); cookieBanner?.classList.add('hidden'); });
+        declineBtn?.addEventListener('click', () => { localStorage.setItem('cookie_consent_status', 'denied'); cookieBanner?.classList.add('hidden'); });
+        manageCookiesLink?.addEventListener('click', (e) => { e.preventDefault(); localStorage.removeItem('cookie_consent_status'); cookieBanner?.classList.remove('hidden'); });
+        
+        // --- Animation Controls Logic ---
+        document.getElementById('toggle-particles')?.addEventListener('change', e => { e.target.checked ? particlesInstance?.play() : particlesInstance?.pause(); });
+        document.getElementById('toggle-cube-rotation')?.addEventListener('change', e => { autoRotateEnabled = e.target.checked; });
+        
+        // --- FAQ Accordion & Accessibility Logic ---
+        // Distinguish mouse vs. keyboard interaction to provide different experiences.
+        document.body.addEventListener('mousedown', () => document.body.dataset.input = 'mouse');
+        document.body.addEventListener('keydown', () => document.body.dataset.input = 'keyboard');
+
+        const faqAccordion = document.getElementById('faq-accordion');
+        const allDetails = faqAccordion?.querySelectorAll('details');
+
+        allDetails?.forEach(details => {
+            const summary = details.querySelector('summary');
+
+            // This listener handles opening via keyboard focus, which then triggers the 'toggle' event
+            summary.addEventListener('focus', () => {
+                // We only want to auto-open on focus for keyboard users
+                if (document.body.dataset.input === 'keyboard') {
+                    details.open = true;
+                }
+            });
+            
+            // This listener now correctly handles accordion behavior ONLY for keyboard users
+            details.addEventListener('toggle', () => {
+                if (details.open && document.body.dataset.input === 'keyboard') {
+                    allDetails.forEach(otherDetails => {
+                        if (otherDetails !== details) {
+                            otherDetails.open = false;
+                        }
+                    });
+                }
+            });
+        });
+
+        // This listener handles closing all FAQs when keyboard focus leaves the component
+        faqAccordion?.addEventListener('focusout', (e) => {
+            if (!faqAccordion.contains(e.relatedTarget) && document.body.dataset.input === 'keyboard') {
+                allDetails.forEach(details => { details.open = false; });
+            }
+        });
+
+
+        // --- Countdown Timer ---
+        const countdownBadge = document.getElementById('countdown-badge');
+        const countdownDuration = 15 * 24 * 60 * 60 * 1000; // 15 days in milliseconds
+        const countdownEndDate = new Date(new Date().getTime() + countdownDuration);
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = countdownEndDate - now;
+            const countdownSpan = countdownBadge?.querySelector('span');
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                if(countdownSpan) countdownSpan.innerHTML = "Beta Access Closed";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            if (countdownSpan) {
+                countdownSpan.innerHTML = `Limited Beta Spots End In: <b>${days}d ${hours}h ${minutes}m ${seconds}s</b>`;
+            }
+        }
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // --- Scroll Depth Analytics ---
+        const scrollDepthMarkers = { 25: false, 50: false, 75: false, 100: false };
+        window.addEventListener('scroll', () => {
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
+            const scrollTop = window.scrollY;
+            const totalScroll = scrollTop + clientHeight;
+            const scrollPercentage = Math.round((totalScroll / scrollHeight) * 100);
+
+            for (const marker in scrollDepthMarkers) {
+                if (scrollPercentage >= marker && !scrollDepthMarkers[marker]) {
+                    scrollDepthMarkers[marker] = true;
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'scroll_depth', {
+                            'event_category': 'Engagement',
+                            'event_label': `${marker}%`,
+                            'value': marker,
+                            'non_interaction': true // To not affect bounce rate
+                        });
+                    }
+                }
+            }
+        }, { passive: true });
+    });
     </script>
 </body>
 </html>
