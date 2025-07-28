@@ -220,7 +220,7 @@
 
                 <!-- Waitlist Form -->
                 <div id="waitlist" class="max-w-md mx-auto mt-8">
-                    <form id="waitlist-form" name="waitlist" method="POST" data-netlify="true" data-netlify-recaptcha="true" data-netlify-honeypot="bot-field" class="flex flex-col sm:flex-row gap-3">
+                    <form id="waitlist-form" name="waitlist" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="flex flex-col sm:flex-row gap-3">
                         <input type="hidden" name="form-name" value="waitlist" />
                         <p class="hidden"><label>Don’t fill this out if you’re human: <input name="bot-field" /></label></p>
                         <input type="email" name="email" id="email-input" required placeholder="your-email@domain.com" aria-label="Email for waitlist" class="flex-grow w-full px-5 py-3.5 rounded-lg bg-zinc-900 border border-zinc-700 text-slate-200 focus:ring-4 focus:ring-orange-500/50 focus:border-orange-500 outline-none transition-all duration-300" />
@@ -228,7 +228,6 @@
                             <span class="button-text">Get Early Access</span>
                             <svg class="spinner h-5 w-5 ml-3 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                         </button>
-                        <div data-netlify-recaptcha="true"></div>
                     </form>
                     <div id="form-message" class="mt-4 font-medium h-6" aria-live="polite"></div>
                 </div>
@@ -367,11 +366,6 @@
                 <div class="flex items-center gap-3"><label for="toggle-particles" class="cursor-pointer">Background Particles</label><label class="toggle-switch"><input type="checkbox" id="toggle-particles" checked><span class="slider"></span></label></div>
                 <div class="flex items-center gap-3"><label for="toggle-cube-rotation" class="cursor-pointer">Cube Rotation</label><label class="toggle-switch"><input type="checkbox" id="toggle-cube-rotation" checked><span class="slider"></span></label></div>
             </div>
-            <p class="text-xs text-slate-600 mt-6">
-                This site is protected by reCAPTCHA and the Google
-                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="underline hover:text-slate-400">Privacy Policy</a> and
-                <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" class="underline hover:text-slate-400">Terms of Service</a> apply.
-            </p>
         </footer>
     </div>
 
@@ -462,7 +456,7 @@
         }, { threshold: 0.2 });
         faders.forEach(fader => appearOnScroll.observe(fader));
         
-        // --- Form Submission with Netlify reCAPTCHA ---
+        // --- Form Submission with Netlify ---
         const waitlistForm = document.getElementById('waitlist-form');
         waitlistForm?.addEventListener('submit', event => {
             event.preventDefault();
