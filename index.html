@@ -13,12 +13,19 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.operatoruplift.com/">
+    <!-- 
+      Production Checklist:
+      1. Create a robots.txt file in your root directory.
+         - For launch: User-agent: * Allow: / Sitemap: https://www.operatoruplift.com/sitemap.xml
+         - Pre-launch: User-agent: * Disallow: /
+      2. Generate a sitemap.xml (e.g., via a Netlify plugin or online generator) and place it in the root.
+    -->
 
     <title>Operator Uplift - AI-Powered Self-Progression</title>
     
     <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M25.0558 23.4284L16 28.5713L6.94421 23.4284V13.1427L16 8L25.0558 13.1427V23.4284Z' stroke='%23f97316' stroke-width='2'/><path d='M16 18.2857L16 8M16 18.2857L22.9282 22.1429M16 18.2857L9.0718 22.1429' stroke='%23f97316' stroke-width='1.5'/></svg>" type="image/svg+xml">
-    <link rel="alternate icon" href="https://placehold.co/32x32/f97316/0a0a0a?text=OU" onerror="this.onerror=null;this.href='https://placehold.co/32x32/f97316/ffffff?text=OU';">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="/favicon.png">
 
 
     <!-- Analytics & Tracking -->
@@ -47,9 +54,6 @@
     src="https://www.facebook.com/tr?id=1462196764930097&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
-
-    <!-- reCAPTCHA v3 Script -->
-    <script src="https://www.google.com/recaptcha/api.js?render=6LelQ5ErAAAAABRxSDOpd1UsqfZPp4sqXVIQQZgV"></script>
     
     <!-- Stylesheets and Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -209,13 +213,14 @@
 
                 <!-- Waitlist Form -->
                 <div id="waitlist" class="max-w-md mx-auto mt-8">
-                    <form id="waitlist-form" name="waitlist" class="flex flex-col sm:flex-row gap-3">
+                    <form id="waitlist-form" name="waitlist" method="POST" data-netlify="true" data-netlify-recaptcha="true" class="flex flex-col sm:flex-row gap-3">
+                        <input type="hidden" name="form-name" value="waitlist" />
                         <input type="email" name="email" id="email-input" required placeholder="your-email@domain.com" aria-label="Email for waitlist" class="flex-grow w-full px-5 py-3.5 rounded-lg bg-zinc-900 border border-zinc-700 text-slate-200 focus:ring-4 focus:ring-orange-500/50 focus:border-orange-500 outline-none transition-all duration-300" />
                         <button type="submit" id="waitlist-submit-btn" class="bg-[var(--accent-color)] text-black font-bold px-6 py-3.5 rounded-lg hover:bg-[var(--accent-hover)] transition-colors duration-300 accent-glow-button flex items-center justify-center whitespace-nowrap">
                             <span class="button-text">Get Early Access</span>
                             <svg class="spinner h-5 w-5 ml-3 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                         </button>
-                         <div class="g-recaptcha" data-sitekey="6LelQ5ErAAAAABRxSDOpd1UsqfZPp4sqXVIQQZgV" data-size="invisible"></div>
+                        <div data-netlify-recaptcha="true"></div>
                     </form>
                     <div id="form-message" class="mt-4 font-medium h-6" aria-live="polite"></div>
                 </div>
@@ -444,7 +449,7 @@
         }, { threshold: 0.2 });
         faders.forEach(fader => appearOnScroll.observe(fader));
         
-        // --- Form Submission with reCAPTCHA ---
+        // --- Form Submission with Netlify reCAPTCHA ---
         const waitlistForm = document.getElementById('waitlist-form');
         waitlistForm?.addEventListener('submit', event => {
             event.preventDefault();
@@ -466,51 +471,36 @@
             btnText.classList.add('hidden');
             spinner.classList.remove('hidden');
 
-            grecaptcha.ready(function() {
-                grecaptcha.execute('6LelQ5ErAAAAABRxSDOpd1UsqfZPp4sqXVIQQZgV', {action: 'submit'}).then(function(token) {
-                    const formData = new FormData(waitlistForm);
-                    formData.append('g-recaptcha-response', token);
+            const formData = new URLSearchParams(new FormData(waitlistForm)).toString();
 
-                    // Note: For a serverless function setup, you would fetch your own endpoint.
-                    // For Netlify Forms, we can add the token to a hidden input and submit.
-                    const hiddenInput = document.createElement('input');
-                    hiddenInput.type = 'hidden';
-                    hiddenInput.name = 'g-recaptcha-response';
-                    hiddenInput.value = token;
-                    waitlistForm.appendChild(hiddenInput);
-
-                    const netlifyFormData = new URLSearchParams(new FormData(waitlistForm));
-                    netlifyFormData.append('form-name', 'waitlist');
-
-
-                    fetch('/', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        body: netlifyFormData.toString()
-                    })
-                    .then(() => {
-                        showPage('success-modal');
-                        formMessage.textContent = 'Success! We\'ll be in touch soon.';
-                        formMessage.className = 'mt-4 font-medium h-6 text-green-400';
-                        if (typeof gtag === 'function') {
-                            gtag('event', 'join_waitlist', { 'method': 'email' });
-                        }
-                        setTimeout(() => { formMessage.textContent = ''; }, 5000);
-                        waitlistForm.reset();
-                    })
-                    .catch(error => { 
-                        formMessage.textContent = 'Submission failed. Please try again.'; 
-                        formMessage.className = 'mt-4 font-medium h-6 text-red-400'; 
-                        console.error('Form submission error:', error);
-                        setTimeout(() => { formMessage.textContent = ''; }, 5000);
-                    })
-                    .finally(() => {
-                        submitBtn.disabled = false;
-                        btnText.classList.remove('hidden');
-                        spinner.classList.add('hidden');
-                        waitlistForm.removeChild(hiddenInput);
-                    });
-                });
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    showPage('success-modal');
+                    formMessage.textContent = 'Success! We\'ll be in touch soon.';
+                    formMessage.className = 'mt-4 font-medium h-6 text-green-400';
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'join_waitlist', { 'method': 'email' });
+                    }
+                    waitlistForm.reset();
+                } else {
+                   throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => { 
+                formMessage.textContent = 'Submission failed. Please try again.'; 
+                formMessage.className = 'mt-4 font-medium h-6 text-red-400'; 
+                console.error('Form submission error:', error);
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                btnText.classList.remove('hidden');
+                spinner.classList.add('hidden');
+                setTimeout(() => { formMessage.textContent = ''; }, 5000);
             });
         });
 
